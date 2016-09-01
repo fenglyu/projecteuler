@@ -9,7 +9,7 @@ def prime(n):
             i += 1
         else:
             flag = False
-            i += 1
+#            i += 1
             break
     return flag
 
