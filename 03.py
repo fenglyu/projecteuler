@@ -14,6 +14,3 @@ while prime < 600851475143:
         continue
 
 print(arr)
-
-if "__name__" == "__main__":
-    pass
