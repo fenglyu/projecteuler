@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-# this is one time pass, lucky one
-
-
+# this is one time pass, lucky :P
 import re
 
 raw = """
@@ -30,9 +28,6 @@ raw = """
 
 def _max(a, b):
     return a if a > b else b
-
-
-
 
 def main():
 
