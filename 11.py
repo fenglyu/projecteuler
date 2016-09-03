@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
-raw = """"
+# this is one time pass, lucky one
+
+
+import re
+
+raw = """
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -23,8 +28,58 @@ raw = """"
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
+def _max(a, b):
+    return a if a > b else b
+
+
+
+
 def main():
 
+    lists = [ [0] * 20 for i in range(20) ]
+    c = 0
+    for i in [x for x in re.split(r'\n', raw) if len(x.strip()) > 0  ]:
+#        print(i)
+        lists[c] = [(int)(j) for j in re.split(r'\s', i)]
+        c = c + 1
+#    print(lists)
+
+    max = -1
+    for i in range(0, 20):
+        for j in range(0, 20):
+
+            # left -> right
+            mul = 1
+            if j + 3 <20:
+                for k in range(j, j+4):
+                    mul = mul * lists[i][k]
+                max = _max(max, mul)
+            # up -> bottom
+            mul = 1
+            if i + 3 < 20:
+                for k in range(i,i+4):
+                    mul = mul * lists[k][j]
+                max = _max(max, mul)
+
+            # bottom right
+            mul = 1
+            if j + 3 < 20 and i + 3 < 20:
+                for k in range(0, 4):
+                    mul = mul * lists[i+k][j+k]
+                max = _max(max, mul)
+
+            # lower left
+            mul = 1
+            a = i
+            b = j
+            if j - 3 >= 0 and i + 3 < 20:
+                for k in range(0, 4):
+                    mul = mul * lists[a][b]
+                    a += 1
+                    b -= 1
+                max = _max(max, mul)
+
+    print("result is %d\n" % max)
 
 if __name__ == "__main__":
     main()
