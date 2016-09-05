@@ -1,31 +1,29 @@
 #!/usr/bin/env python3
 
 
-def work(n):
-    arr = []
-    for i in range(1, n+1):
+def divisor(n):
+    num = 0
+    i = 1
+    while i * i <= n:
         if n % i == 0:
-            arr.append(i)
-#    print(arr)
-    return len(arr)
+            num += 2
+        i += 1
+
+    if i * i == n:
+        num -= 1
+
+    return num
 
 def main():
 
     i = 1
     sum = 0
-    count = 0
     while True:
-#        print(i)
-#        if (count >= 10):
-#            break
-        sum += i
-        arr = work(sum)
-        if arr >= 500:
-            print(sum)
-            print(arr)
+        sum = divisor(i*(i+1)/2)
+        if sum >=  500:
+            print(sum, i*(i+1)/2)
             break
         i += 1
-        count += 1
 
 if __name__ == "__main__":
     main()
