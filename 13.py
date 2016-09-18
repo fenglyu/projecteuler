@@ -129,13 +129,20 @@ def solution2():
     b = time.time()
     print(b-a)
 
+
+def t1me(solution):
+    def wrapper():
+        a = time.time()
+        solution()
+        b = time.time()
+        print(b-a)
+    return wrapper
+
+@t1me
 def solution3():
-    a = time.time()
     arr =  [x[0:12] for x in re.split("\n", raw) if len(x.strip()) > 0]
     total = sum(map(int, arr))
     print(str(total)[:10])
-    b = time.time()
-    print(b-a)
 
 def solution4():
     a = time.time()
