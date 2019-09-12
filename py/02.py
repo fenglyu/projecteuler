@@ -10,4 +10,4 @@ while True:
     if cur % 2 == 0:
         total += cur
 
-print total
+print(total)

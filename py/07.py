@@ -23,7 +23,7 @@ def index(m):
             if count >= m:
                 break;
         i += 1
-    print(i, count)
+    print((i, count))
 
 if __name__ == "__main__":
 #    print(prime(113))

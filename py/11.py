@@ -74,7 +74,7 @@ def main():
                     b -= 1
                 max = _max(max, mul)
 
-    print("result is %d\n" % max)
+    print(("result is %d\n" % max))
 
 if __name__ == "__main__":
     main()

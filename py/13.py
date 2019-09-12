@@ -113,9 +113,9 @@ def solution1():
     for i in arr:
         sum += i
 
-    print(str(sum)[0:10])
+    print((str(sum)[0:10]))
     b = time.time()
-    print(b-a)
+    print((b-a))
 
 def solution2():
     a = time.time()
@@ -125,9 +125,9 @@ def solution2():
     for i in arr:
         sum += i
 
-    print(str(sum)[0:10])
+    print((str(sum)[0:10]))
     b = time.time()
-    print(b-a)
+    print((b-a))
 
 
 def t1me(solution):
@@ -135,20 +135,20 @@ def t1me(solution):
         a = time.time()
         solution()
         b = time.time()
-        print(b-a)
+        print((b-a))
     return wrapper
 
 @t1me
 def solution3():
     arr =  [x[0:12] for x in re.split("\n", raw) if len(x.strip()) > 0]
     total = sum(map(int, arr))
-    print(str(total)[:10])
+    print((str(total)[:10]))
 
 def solution4():
     a = time.time()
 
     b = time.time()
-    print(b-a)
+    print((b-a))
     pass
 
 def main():

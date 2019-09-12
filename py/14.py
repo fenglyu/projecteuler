@@ -26,7 +26,7 @@ def count(num):
 
 def main():
     for i in range(800000, 1000000):
-        print(i, count(i))
+        print((i, count(i)))
 
 if __name__ == "__main__":
     main()

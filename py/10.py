@@ -20,7 +20,7 @@ def main():
             sum += i
 #        print(sum)
 
-    print("result is %d\n" % sum)
+    print(("result is %d\n" % sum))
 
 if __name__ == "__main__":
     main()

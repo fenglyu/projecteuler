@@ -21,7 +21,7 @@ def main():
     while True:
         sum = divisor(i*(i+1)/2)
         if sum >=  500:
-            print(sum, i*(i+1)/2)
+            print((sum, i*(i+1)/2))
             break
         i += 1
 

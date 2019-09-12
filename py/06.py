@@ -12,7 +12,7 @@ def main():
         sum2 += i
 
     sum2 = sum2 * sum2
-    print(sum2 - sum1)
+    print((sum2 - sum1))
 
 
 if __name__ == "__main__":
