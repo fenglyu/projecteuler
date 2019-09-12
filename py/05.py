@@ -32,10 +32,12 @@ def main():
 
     for num in range(2, max+1):
         nl = prime2(num)
+#        print(nl)
         for i in range(2, len(nl)):
             if nl[i] > pl[i]:
                 pl[i] = nl[i]
 
+    print(pl)
     # debug
 #    for i in range(0, max+1):
 #        print(pl[i])
