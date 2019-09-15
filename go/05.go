@@ -14,7 +14,7 @@ func GetPrimes(n int) []int {
 	for {
 
 		if n == 1 || n == 2 {
-			s.append(s, n)
+			s = append(s, n)
 			return s
 		}
 

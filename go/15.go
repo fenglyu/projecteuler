@@ -7,7 +7,7 @@ import (
 func main() {
 	dp := [21][21]int64{}
 
-	fmt.Println(dp)
+	//	fmt.Println(dp)
 	for i := 0; i <= 20; i++ {
 		for j := 0; j <= 20; j++ {
 			if i == 0 || j == 0 {
