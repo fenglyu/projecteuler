@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	//	"strings"
+	"strings"
 )
 
 func main() {
+
 	series := `73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -32,13 +33,19 @@ func main() {
 
 	largest := 0
 	i := 0
+
+	// remove "\n" and " " (end string space)
+	series = strings.ReplaceAll(series, "\n", "")
+	series = strings.ReplaceAll(series, " ", "")
+
 	for {
 		if i+wd >= len(series) {
 			break
 		}
+
 		mul := 1
-		for j := 0; j < wd; j++ {
-			mul = mul * int(series[i+j])
+		for j := i; j < i+wd; j++ {
+			mul = mul * int(series[j]-'0')
 		}
 		if mul > largest {
 			largest = mul
@@ -46,5 +53,10 @@ func main() {
 
 		i++
 	}
+
+	//	for i := 0; i < len(series); i++ {
+	//
+	//		fmt.Println(series[i] - '0')
+	//	}
 	fmt.Println(largest)
 }
