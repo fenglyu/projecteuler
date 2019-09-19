@@ -7,13 +7,16 @@ import (
 	"strings"
 )
 
+//  dlv debug go/13.go
+
 func count(n uint64) int {
+	s := n
 	c := 0
 	for {
-		if n == 0 {
+		if s == 0 {
 			break
 		}
-		n = n / 10
+		s = s / 10
 		c++
 	}
 
@@ -21,6 +24,13 @@ func count(n uint64) int {
 }
 
 func main() {
+
+	//	fmt.Println(count(123456))
+	//	fmt.Println(count(1234567))
+	//	fmt.Println(count(12345678))
+	//	fmt.Println(count(123456789))
+	//	fmt.Println(count(1234567891011))
+
 	large_sum := `
 	37107287533902102798797998220837590246510135740250
 	46376937677490009712648124896970078050417018260538
@@ -128,6 +138,11 @@ func main() {
 	// line sep
 
 	lines := s.Split(strings.Trim(large_sum, " |\t|\n|\r\n"), -1)
+
+	//	for i, v := range lines {
+	//		str := strings.Trim(v, " |\t|\n|\r\n")
+	//		fmt.Println(i, str[1]-'0')
+	//	}
 	//	fmt.Println(len(lines))
 
 	var sum uint64
@@ -139,21 +154,22 @@ func main() {
 		cnt := 0
 
 		for j := 0; j < 100; j++ {
-			sum += uint64(lines[j][i] - '0')
+			// remove blank characters on each line
+			//		fmt.Println(lines[j])
+			arr := strings.Trim(lines[j], " |\t|\n|\r\n")
+			//			fmt.Println(arr)
+			sum += uint64(arr[i] - '0')
 		}
+
 		cnt = count(sum)
-		//fmt.Println("cnt ", cnt)
+		//fmt.Println("cnt ", cnt, "sum: ", sum)
 		temp := strconv.FormatUint(sum, 10)
 		//fmt.Println("temp: ", temp)
 		if cnt >= 10 {
-
-			//pre = temp[:10]
-			//fmt.Println("pre: ", temp[:10])
 			num, err := strconv.Atoi(temp[:10])
 			if err != nil {
-				panic(err)
+				fmt.Println(err)
 			}
-
 			//			fmt.Println("num: ", num)
 			//fmt.Printf("%T, %v\n", num, num)
 
@@ -162,8 +178,8 @@ func main() {
 			} else {
 				break
 			}
-
 		}
+		sum = sum * 10
 		//fmt.Println(i, cnt, sum)
 	}
 
