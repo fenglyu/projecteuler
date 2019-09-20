@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func mul(a interface{}, b interface{}) []int {
@@ -96,6 +97,9 @@ func main() {
 	}
 	fmt.Println(sum)
 
+	// what the fuck, there is math lib :(
+	o := math.Pow(2, 1000)
+	fmt.Printf("%.1f", o)
 }
 
 /*
