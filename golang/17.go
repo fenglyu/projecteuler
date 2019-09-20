@@ -4,27 +4,11 @@ import (
 	"fmt"
 )
 
-func convert(t int) interface{} {
-	stats := map[int]int{}
-	n := t
-	c := 0
-	for {
-		if n == 0 {
-			break
-		}
-
-		stats[c] = n % 10
-		n = n / 10
-		c++
-	}
-
-	return stats
-}
-
-func main() {
+func convert(n int) string {
+	//func convert(n int) interface{} {
 
 	ones := []string{
-		"zero",
+		"",
 		"one",
 		"two",
 		"three",
@@ -47,6 +31,8 @@ func main() {
 	}
 
 	tens := []string{
+		"",
+		"",
 		"twenty",
 		"thirty",
 		"fourty",
@@ -57,11 +43,48 @@ func main() {
 		"ninety",
 	}
 
-	fmt.Println(stat)
-	fmt.Println(convert(422))
-	s := convert(422)
+	stats := make([]int, 4, 5)
+	//	n := t
+	c := 0
+	for {
+		if n == 0 {
+			break
+		}
 
-	for i:=2; i>=0 ; i-- {
-		fmt.Println(
+		stats[c] = n % 10
+		n = n / 10
+		c++
 	}
+
+	//t := s.([]int)
+
+	t := stats
+	res := ""
+
+	//fmt.Println(res)
+	return res
+}
+
+func convert2(n int) []int {
+	a := []int{1, 2, 3}
+	return a
+}
+
+func main() {
+
+	//	fmt.Println(stat)
+	//	fmt.Println(convert(422))
+	arr := make([]string, 1001, 1050)
+	sum := 0
+	for i := 1; i < 1001; i++ {
+		arr[i-1] = convert(i)
+		sum += len(arr[i-1])
+
+		fmt.Println(arr[i-1])
+		//fmt.Println(i)
+		//sum += len(convert(i))
+	}
+
+	fmt.Println(sum)
+
 }
