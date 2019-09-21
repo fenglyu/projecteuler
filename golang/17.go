@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	//	"strings"
 )
 
-func convert(n int) string {
+func convert(z int) string {
 	//func convert(n int) interface{} {
 
 	ones := []string{
@@ -35,7 +36,7 @@ func convert(n int) string {
 		"",
 		"twenty",
 		"thirty",
-		"fourty",
+		"forty",
 		"fifty",
 		"sixty",
 		"seventy",
@@ -44,7 +45,7 @@ func convert(n int) string {
 	}
 
 	stats := make([]int, 4, 5)
-	//	n := t
+	n := z
 	c := 0
 	for {
 		if n == 0 {
@@ -56,12 +57,40 @@ func convert(n int) string {
 		c++
 	}
 
-	//t := s.([]int)
-
 	t := stats
 	res := ""
 
+	//t := s.([]int)
+
+	for i := 3; i >= 0; i-- {
+
+		if i == 3 && t[i] != 0 {
+			res += fmt.Sprintf("%s thousand", ones[t[i]])
+		} else if i == 2 && t[i] != 0 {
+			res += fmt.Sprintf("%s hundred", ones[t[i]])
+			if t[i-1] != 0 || t[i-2] != 0 {
+				res += fmt.Sprint(" and ")
+			}
+		} else if i == 1 {
+			if t[i] == 1 {
+				temp := t[i]*10 + t[i-1]
+				res += fmt.Sprintf(ones[temp])
+			} else {
+				res += fmt.Sprintf("%s", tens[t[i]])
+				if t[i-1] != 0 && t[i] != 0 {
+					res += fmt.Sprintf("-")
+				}
+			}
+		} else if i == 0 {
+			if t[i+1] != 1 {
+				res += fmt.Sprint(ones[t[i]])
+			}
+		}
+	}
+
 	//fmt.Println(res)
+	//fmt.Println(t)
+
 	return res
 }
 
@@ -76,11 +105,22 @@ func main() {
 	//	fmt.Println(convert(422))
 	arr := make([]string, 1001, 1050)
 	sum := 0
-	for i := 1; i < 1001; i++ {
+	//for i := 1; i < 10; i++ {
+	//for i := 10; i < 20; i++ {
+	//	for i := 20; i < 100; i++ {
+	for i := 100; i < 1000; i++ {
 		arr[i-1] = convert(i)
-		sum += len(arr[i-1])
+		//	s := strings.ReplaceAll(arr[i-1], " ", "")
+		//	s = strings.ReplaceAll(s, "-", "")
+		//		fmt.Println(s)
+		//sum += len(s)
+		for _, v := range arr[i-1] {
+			if v != ' ' && v != '-' {
+				sum += 1
+			}
+		}
 
-		fmt.Println(arr[i-1])
+		//fmt.Println(arr[i-1])
 		//fmt.Println(i)
 		//sum += len(convert(i))
 	}
