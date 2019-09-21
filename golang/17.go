@@ -5,6 +5,10 @@ import (
 	//	"strings"
 )
 
+// one way of counting the total numbers
+// https://www.mathblog.dk/project-euler-17-letters-in-the-numbers-1-1000/
+//
+
 func convert(z int) string {
 	//func convert(n int) interface{} {
 
