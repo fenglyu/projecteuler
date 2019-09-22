@@ -64,8 +64,6 @@ func convert(z int) string {
 	t := stats
 	res := ""
 
-	//t := s.([]int)
-
 	for i := 3; i >= 0; i-- {
 
 		if i == 3 && t[i] != 0 {
@@ -92,9 +90,6 @@ func convert(z int) string {
 		}
 	}
 
-	//fmt.Println(res)
-	//fmt.Println(t)
-
 	return res
 }
 
@@ -105,13 +100,8 @@ func convert2(n int) []int {
 
 func main() {
 
-	//	fmt.Println(stat)
-	//	fmt.Println(convert(422))
 	arr := make([]string, 1001, 1050)
 	sum := 0
-	//for i := 1; i < 10; i++ {
-	//for i := 10; i < 20; i++ {
-	//	for i := 20; i < 100; i++ {
 	for i := 100; i < 1000; i++ {
 		arr[i-1] = convert(i)
 		//	s := strings.ReplaceAll(arr[i-1], " ", "")
@@ -124,11 +114,7 @@ func main() {
 			}
 		}
 
-		//fmt.Println(arr[i-1])
-		//fmt.Println(i)
-		//sum += len(convert(i))
 	}
 
 	fmt.Println(sum)
-
 }
