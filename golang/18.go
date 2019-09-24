@@ -61,22 +61,21 @@ func dfs4(n int) int {
 	for i := 1; i < n; i++ { //更新之后14层的权值；
 		for j := 0; j <= i; j++ { //每层数字为i+1个；
 
-			//fmt.Println(f[i][j])
-			if j > 0 || j <= i {
+			if j > 0 && j <= i {
 				if f[i-1][j-1] > f[i-1][j] {
 					f[i][j] = f[i-1][j-1]
 				}
 				if f[i-1][j] > f[i-1][j-1] {
 					f[i][j] = f[i-1][j]
 				}
-			} else {
-				f[i][j] += m[i][j]
 			}
+			f[i][j] += m[i][j]
 		}
 	}
 
 	ans := 0
-	for i := 0; i <= n; i++ {
+	//for i := 0; i <= n; i++ {
+	for i := 0; i < n; i++ {
 		if f[n-1][i] > ans {
 			ans = f[n-1][i]
 		}
@@ -86,7 +85,7 @@ func dfs4(n int) int {
 }
 
 func main() {
-	fmt.Println("Problem 18")
+	//fmt.Println("Problem 18")
 
 	fileName := "p08_triangle.txt"
 	content, err := ioutil.ReadFile(fileName)
@@ -129,7 +128,9 @@ func main() {
 
 	for i := 0; i < 40; i++ {
 		for j := 0; j < 40; j++ {
-			fmt.Print(m[i][j], " ")
+			if m[i][j] != 0 {
+				fmt.Print(m[i][j], " ")
+			}
 		}
 		fmt.Println("")
 	}
