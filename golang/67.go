@@ -55,9 +55,9 @@ func dfs4(n int) int {
 	for i := 1; i < n; i++ {
 		for j := 0; j <= i; j++ {
 			if j == 0 {
+				// the left column can only access its accesstor in the same position
 				f[i][j] = f[i-1][j]
 			} else {
-
 				if f[i-1][j-1] > f[i-1][j] {
 					f[i][j] = f[i-1][j-1]
 				} else {
