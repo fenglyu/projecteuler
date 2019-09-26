@@ -29,12 +29,17 @@ func (l Leap) String() string {
 	return fmt.Sprintf("Leap: %d %v", l.days, l.leap)
 }
 
+type Day struct{
+	d Week
+}
 type Month struct {
 	m int
+	num int
 }
 
 type Year struct {
 	y int
+	leap bool
 }
 
 type Date struct {
@@ -44,8 +49,8 @@ type Date struct {
 	Week
 }
 
-func (d Date) CountDays(s Date, w Week, d Date) {
-
+func (d *Date) CountDays(w Week, d Date) {
+	d.Year.
 }
 
 func isLeap(n int) Leap {
