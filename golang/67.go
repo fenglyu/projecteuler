@@ -8,24 +8,6 @@ import (
 
 var m [150][150]int
 
-func dfs1(x int, y int, n int) int {
-	if x == n {
-		return 0
-	}
-	ans1 := dfs1(x+1, y, n)
-	ans2 := dfs1(x+1, y+1, n)
-	if ans1 > ans2 {
-		return ans1 + m[x][y]
-	} else {
-		return ans2 + m[x][y]
-	}
-}
-
-func dfs2(a [][]int) int {
-	fmt.Println("hello world", a)
-	return 1
-}
-
 func dfs3(n int) int {
 
 	f := [150][150]int{{0}}
@@ -117,8 +99,6 @@ func main() {
 		}
 		fmt.Println("")
 	}
-
-	//fmt.Println("dfs1: ", dfs1(0, 0, 100))
 
 	fmt.Println("dfs3: ", dfs3(100))
 	fmt.Println("dfs4: ", dfs4(100))

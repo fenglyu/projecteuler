@@ -60,12 +60,14 @@ func dfs4(n int) int {
 	f[0][0] = m[0][0]        //初始化f[0][0]为第0层的值；
 	for i := 1; i < n; i++ { //更新之后14层的权值；
 		for j := 0; j <= i; j++ { //每层数字为i+1个；
-
-			if j > 0 && j <= i {
+			if j == 0 {
+				// the left column can only access its accesstor in the same position
+				f[i][j] = f[i-1][j]
+			} else {
 				if f[i-1][j-1] > f[i-1][j] {
 					f[i][j] = f[i-1][j-1]
-				}
-				if f[i-1][j] > f[i-1][j-1] {
+				} else {
+					//if f[i-1][j] > f[i-1][j-1] {
 					f[i][j] = f[i-1][j]
 				}
 			}
