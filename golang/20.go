@@ -15,7 +15,7 @@ func mul(a interface{}, b interface{}) []int {
 		f = g
 		g = t
 	}
-	//fmt.Println("f: ", f, "g: ", g)
+
 	result := make([]int, len(f)+len(g))
 
 	for j := len(g) - 1; j >= 0; j-- {
@@ -41,7 +41,6 @@ func mul(a interface{}, b interface{}) []int {
 
 func main() {
 
-	//	sum := 0
 	res := make([]int, 1000)
 	res[999] = 1
 	for i := 1; i < 101; i++ {
@@ -59,16 +58,16 @@ func main() {
 			c = c / 10
 			count--
 		}
-		//	fmt.Println(c, ar)
 
 		res = mul(res, ar)
 
 	}
-	fmt.Println(res)
+	//	fmt.Println(res)
+
 	sum := 0
 	for _, v := range res {
 		sum += v
 	}
-	fmt.Println(sum)
 
+	fmt.Println(sum)
 }
