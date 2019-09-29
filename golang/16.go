@@ -17,8 +17,9 @@ func mul(a interface{}, b interface{}) []int {
 	}
 
 	//fmt.Println("f: ", f, "g: ", g)
-	result := make([]int, (len(f)+len(g))*2)
-
+	//result := make([]int, (len(f)+len(g))*2)
+	// optimization, take care of memory allocation
+	result := make([]int, len(f)+len(g))
 	for j := len(g) - 1; j >= 0; j-- {
 		//initially pos (index of result ) has the same relative postion as j in array
 		pos := len(result) - (len(g) - j)
@@ -57,45 +58,45 @@ func main() {
 
 	// 2**50
 	c := []int{1, 1, 2, 5, 8, 9, 9, 9, 0, 6, 8, 4, 2, 6, 2, 4}
-	d := []int{1, 1, 2, 5, 8, 9, 9, 9, 0, 6, 8, 4, 2, 6, 2, 4}
+	//d := []int{1, 1, 2, 5, 8, 9, 9, 9, 0, 6, 8, 4, 2, 6, 2, 4}
 	res := make([]int, 1000)
 	res[999] = 1
 
-	//	for i := 0; i < 20; i++ {
-	//		res = mul(res, c)
-	//		//		if (len(c) + len(res) + 1) > cap(res) {
-	//		//			t := make([]int, len(res), (cap(res)+1)*2)
-	//		//			copy(t, res)
-	//		//			res = t
-	//		//		}
-	//	}
+	for i := 0; i < 20; i++ {
+		res = mul(res, c)
+		//		if (len(c) + len(res) + 1) > cap(res) {
+		//			t := make([]int, len(res), (cap(res)+1)*2)
+		//			copy(t, res)
+		//			res = t
+		//		}
+	}
 
-	res = mul(d, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
-	res = mul(res, c)
+	//	res = mul(d, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
+	//	res = mul(res, c)
 	// get it
 	//fmt.Println(res)
 	sum = 0
 	for i := len(res) - 1; i >= 0; i-- {
 		sum += res[i]
 	}
-	fmt.Println(sum)
+	fmt.Println("sum: ", sum)
 
 	// what the fuck, there is math lib :(
 	o := math.Pow(2, 1000)
