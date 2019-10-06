@@ -55,27 +55,29 @@ func sum1j(ar []int) int {
 }
 
 func main() {
-	//	sum := 40
-	//
-	//	nums := divisor(sum)
-	//	fmt.Println("sum: ", nums)
-	//	// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110;
-	//	fmt.Println("220: ", divisor(220))
-	//
-	//	s := 0
-	//	for _, v := range divisor(220) {
-	//		s += v
-	//	}
-	//	fmt.Println("220: ", s)
-	//	// 1, 2, 4, 71 and 142
-	//	fmt.Println("284: ", divisor(284))
-	//s = 0
-	//for _, v := range divisor(284) {
-	//	s += v
-	//}
-	//fmt.Println("284: ", s)
+	sum := 40
 
-	btk := make([]int, 10001)
+	nums := divisor(sum)
+	fmt.Println("sum: ", nums)
+	// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110;
+	fmt.Println("220: ", divisor(220))
+
+	s := 0
+	for _, v := range divisor(220) {
+		s += v
+	}
+	fmt.Println("220: ", s)
+	// 1, 2, 4, 71 and 142
+	fmt.Println("284: ", divisor(284))
+	s = 0
+	for _, v := range divisor(284) {
+		s += v
+	}
+	fmt.Println("284: ", s)
+
+	fmt.Println("Demonstration completed .........")
+	fmt.Println("Problem start ............\n\n")
+
 	ar := make([]int, 100)
 
 	for i := 1; i < 10001; i++ {
@@ -83,12 +85,28 @@ func main() {
 		f := sum1j(tf)
 		ts := divisor(f)
 		s := sum1j(ts)
-		//fmt.Println(i, tf, ts, s)
-		if f == s {
-			ar = append(ar, f, s)
+		//fmt.Println(f, s)
+		if f != 1 && s != 1 && i == s && i != f {
+			fmt.Println(i, f, s)
+			ar = append(ar, i, f)
 		}
 		//	fmt.Println(ar)
 	}
 
 	fmt.Println(ar)
+
+	ht := make(map[int]int)
+	sum = 0
+	for _, v := range ar {
+		if _, ok := ht[v]; ok {
+			ht[v]++
+			continue
+		} else {
+			sum += v
+			ht[v]++
+		}
+	}
+
+	fmt.Println("Hash Table: ", ht)
+	fmt.Println("sum: ", sum)
 }
