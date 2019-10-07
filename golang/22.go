@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	//	"strings"
 	"log"
 	"os"
 	"sort"
@@ -19,14 +18,6 @@ import (
 */
 
 type Word string
-
-//func (d Word) Len() int { return len(d) }
-//func (d Word) Swap(i, j int) {
-//	b := []byte(d)
-//	b[i], b[j] = b[j], b[i]
-//}
-
-//type Dictionary []*Word
 
 type Dictionary struct {
 	words []*Word
@@ -91,22 +82,27 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-
 	onComma := func(data []byte, atEOF bool) (advance int, token []byte, err error) {
+
+		if atEOF && len(data) == 0 {
+			return 0, nil, nil
+		}
+
 		for i := 0; i < len(data); i++ {
 			if data[i] == ',' {
 				return i + 1, data[1 : i-1], nil
-				//return i + 1, data[:i], nil
 			}
 		}
-
-		//return 0, data, bufio.ErrFinalToken
-		// fix me plz
-		return
+		// If we're at EOF, we have a final, non ',' terminated words "ALONSO".
+		// Return it.
+		if atEOF {
+			return len(data), data[1 : len(data)-1], nil
+		}
+		// Request more data
+		return 0, nil, nil
 	}
 
 	scanner.Split(onComma)
@@ -116,14 +112,10 @@ func main() {
 
 	i := 0
 	for scanner.Scan() {
-		//		fmt.Printf("%s\n", scanner.Text())
-		//words = append(words, Word{scanner.Text()})
 		w := Word(scanner.Text())
 		words[i] = &w
 		i++
 	}
-
-	//	fmt.Println(words)
 
 	if err := scanner.Err(); err != nil {
 		fmt.Printf("Invalid input: %s", err)
@@ -133,11 +125,9 @@ func main() {
 		words: words,
 		count: i,
 	}
-	//	fmt.Println(d.Len())
+
 	sort.Sort(ByAlphabetical{d})
-
-	fmt.Println(d)
-
+	//	fmt.Println(d)
 	sum := 0
 	for i, v := range d.words {
 		if i >= d.Len() {
@@ -152,5 +142,5 @@ func main() {
 		sum += t * (i + 1)
 	}
 
-	//	fmt.Println(sum)
+	fmt.Println(sum)
 }
