@@ -1,6 +1,7 @@
 package common
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -58,10 +59,10 @@ func TestMultiple(t *testing.T) {
 
 func TestDivisor(t *testing.T) {
 	num := 220
-	expected := []int{1, 2, 20, 0, 4, 10, 5, 8}
+	expected := []int{1, 2, 110, 0, 4, 55, 5, 44, 0, 0, 0, 0, 10, 22, 11, 20, 0}
 	sum := Divisor(num)
 
-	if sum != expected {
+	if !reflect.DeepEqual(sum[:17], expected) {
 		t.Errorf("Result: %d, Expected: %d", sum, expected)
 	}
 }
