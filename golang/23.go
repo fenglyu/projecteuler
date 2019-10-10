@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/fenglyu/projecteuler/golang/common"
 )
 
 const (
@@ -10,40 +11,10 @@ const (
 	Abundant  = 1
 )
 
-func divisor(n int) []int {
-
-	nums := make([]int, 500)
-
-	for i := 0; i < len(nums); i++ {
-		nums[i] = 0
-	}
-
-	i, c := 1, 0
-
-	for {
-		if i*i > n {
-			break
-		}
-
-		tmp := n % i
-		if tmp == 0 {
-			nums[c] = i
-			// only collect 1, ingore the number itself
-			if i != 1 && i != n/i {
-				c++
-				nums[c] = n / i
-			}
-		}
-		i++
-		c++
-	}
-
-	return nums
-}
-
 func NumType(n int) int {
 
-	nums := divisor(n)
+	//nums := divisor(n)
+	nums := common.Divisor(n)
 	//fmt.Println("c:  ", nums)
 	s := 0
 	for _, v := range nums {
