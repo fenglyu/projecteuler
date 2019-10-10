@@ -1,7 +1,6 @@
 package common
 
 import (
-	"fmt"
 	"reflect"
 	"sort"
 	"testing"
@@ -70,7 +69,7 @@ var result = [][]int{
 	{3, 2, 5, 1, 4},
 	{3, 2, 5, 4, 1},
 	{3, 4, 1, 2, 5},
-	{1, 5, 2, 5, 2},
+	{3, 4, 1, 5, 2},
 	{3, 4, 2, 1, 5},
 	{3, 4, 2, 5, 1},
 	{3, 4, 5, 1, 2},
@@ -135,18 +134,19 @@ func TestNextPermutation(t *testing.T) {
 
 	sort.Ints(ar)
 
-	NextPermutationV1(ar, 0, len(ar)-1)
-	if !reflect.DeepEqual(ar, result[0]) {
-		t.Errorf("Result: %d, Expected: %d", ar, result[0])
-	}
+	/*
+		NextPermutationV1(ar, 0, len(ar)-1)
+		if !reflect.DeepEqual(ar, result[0]) {
+			t.Errorf("Result: %d, Expected: %d", ar, result[0])
+		}
 
-	NextPermutationV1(ar, 0, len(ar)-1)
-	if !reflect.DeepEqual(ar, result[1]) {
-		t.Errorf("Result: %d, Expected: %d", ar, result[1])
-	}
+		NextPermutationV1(ar, 0, len(ar)-1)
+		if !reflect.DeepEqual(ar, result[1]) {
+			t.Errorf("Result: %d, Expected: %d", ar, result[1])
+		}
+	*/
 }
 
-/*
 func TestNextPermutationV2(t *testing.T) {
 	// Sort
 	sort.Ints(ar)
@@ -156,11 +156,11 @@ func TestNextPermutationV2(t *testing.T) {
 		if i >= len(result) {
 			break
 		}
-		flag = NextPermutationV2(ar, 0, len(ar)-1)
-		fmt.Printf("Result: %d, Expected: %d\n", ar, result[i])
+		//		fmt.Printf("Result: %d, Expected: %d\n", ar, result[i])
 		if !reflect.DeepEqual(ar, result[i]) {
 			t.Errorf("Result: %d, Expected: %d", ar, result[i])
 		}
+		flag = NextPermutationV2(ar, 0, len(ar)-1)
 		i++
 	}
 
@@ -169,7 +169,6 @@ func TestNextPermutationV2(t *testing.T) {
 		t.Errorf("End of iterator errof %d", ar)
 	}
 }
-*/
 
 func TestNextPermutationV3(t *testing.T) {
 	// Sort
@@ -180,11 +179,11 @@ func TestNextPermutationV3(t *testing.T) {
 		if i >= len(result) {
 			break
 		}
-		flag = NextPermutationV3(ar, 0, len(ar))
-		fmt.Printf("Result: %d, Expected: %d\n", ar, result[i])
+		//		fmt.Printf("Result: %d, Expected: %d\n", ar, result[i])
 		if !reflect.DeepEqual(ar, result[i]) {
 			t.Errorf("Result: %d, Expected: %d", ar, result[i])
 		}
+		flag = NextPermutationV3(ar, 0, len(ar))
 		i++
 	}
 	// end of iterator
@@ -195,5 +194,9 @@ func TestNextPermutationV3(t *testing.T) {
 
 /*
 
-dlv test -- -test.v
+ dlv test github.com/fenglyu/projecteuler/golang/common
+
+ b TestNextPermutationV3
+
+ n
 */

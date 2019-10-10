@@ -38,15 +38,12 @@ func NextPermutationV1(c []int, l int, r int) { //bool {
 
 func NextPermutationV2(c []int, l int, r int) bool {
 
-	if l == r {
+	if l >= r {
 		return false
 	}
 
 	var i, j int
 	i = r - 1
-	//	if l == i {
-	//		return false
-	//	}
 
 	for {
 		if c[i] < c[i+1] {
@@ -56,16 +53,32 @@ func NextPermutationV2(c []int, l int, r int) bool {
 				}
 			}
 			c[i], c[j] = c[j], c[i]
-			Reverse(c, i+1, r)
+			ReverseV2(c, i+1, r)
 			return true
 		}
 
 		i--
 
 		if i == l {
-			Reverse(c, l, r)
+			ReverseV2(c, l, r)
 			return false
 		}
+	}
+}
+
+func ReverseV2(c []int, l int, r int) {
+
+	if l == r {
+		return
+	}
+
+	for {
+		if l >= r {
+			break
+		}
+		c[l], c[r] = c[r], c[l]
+		l++
+		r--
 	}
 }
 
@@ -93,11 +106,10 @@ func NextPermutationV3(c []int, first int, last int) bool {
 		if c[i] < c[ii] {
 			j := last - 1
 			for {
-				if !(c[i] < c[j]) {
-					j--
-					continue
-				} else {
+				if c[i] < c[j] {
 					break
+				} else {
+					j--
 				}
 			}
 
@@ -113,13 +125,18 @@ func NextPermutationV3(c []int, first int, last int) bool {
 	}
 }
 
-// reverse() is a predefined function in header file algorithm. It is defined as a template in the above mentioned header file. It reverses the order of the elements in the range [first, last) of any container.
+// Reverse() is a predefined function in header file algorithm. It is defined as a template in the above mentioned header file. It reverses the order of the elements in the range [first, last) of any container.
 //Note: The range used is [first,last), which contains all the elements between first and last, including the element pointed by first but not the element pointed by last.
+// https://github.com/gcc-mirror/gcc/blob/gcc-9-branch/libstdc++-v3/include/bits/stl_algo.h#L1150-L1164
 func Reverse(c []int, first int, last int) {
-	j := last
+
+	if first == last {
+		return
+	}
+
 	last--
 	for {
-		if first >= j || first == last {
+		if first >= last {
 			break
 		}
 		c[first], c[last] = c[last], c[first]
