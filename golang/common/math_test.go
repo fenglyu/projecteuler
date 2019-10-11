@@ -1,6 +1,7 @@
 package common
 
 import (
+	"math"
 	"reflect"
 	"testing"
 )
@@ -64,5 +65,41 @@ func TestDivisor(t *testing.T) {
 
 	if !reflect.DeepEqual(sum[:17], expected) {
 		t.Errorf("Result: %d, Expected: %d", sum, expected)
+	}
+}
+
+func TestFib(t *testing.T) {
+	num, expected := 10, 55
+	fib := Fib(num)
+	if fib != expected {
+		t.Errorf("Result: %d, Expected: %d", fib, expected)
+	}
+}
+
+//
+func TestTailFib(t *testing.T) {
+	num, expected := 10, 55
+	fib := TailFib(num)
+	if fib != expected {
+		//if !floatcompare(float64(fib), float64(expected)) {
+		t.Errorf("Result: %d, Expected: %d", fib, expected)
+	}
+}
+
+//const EPSILON = 1e-9
+const float64EqualityThreshold = 1e-9
+
+func floatcompare(a, b float64) bool {
+	return math.Abs(a-b) <= float64EqualityThreshold*(math.Abs(a)+math.Abs(b))
+}
+
+func TestGoldenFib(t *testing.T) {
+
+	num, expected := 10, 55
+	fib := GoldenFib(num)
+
+	//	fmt.Println(fib, expected)
+	if !floatcompare(float64(fib), float64(expected)) {
+		t.Errorf("Result: %d, Expected: %d", int(fib), expected)
 	}
 }

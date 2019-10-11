@@ -1,5 +1,10 @@
 package common
 
+import (
+	"fmt"
+	"math"
+)
+
 func Multiple(a []int, b []int, r []int) {
 
 	pos := len(r) - 1
@@ -82,4 +87,39 @@ func Divisor(n int) []int {
 	}
 
 	return nums
+}
+
+func Fib(n int) int {
+	if n <= 2 {
+		return 1
+	}
+
+	return Fib(n-1) + Fib(n-2)
+}
+
+// https://stackoverflow.com/questions/33923/what-is-tail-recursion
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, ...
+
+func TailFib(n int) int {
+	if n <= 2 {
+		return 1
+	}
+	return tailRecursiveAux(n, 1, 1)
+}
+
+func tailRecursiveAux(n int, iter int, acc int) int {
+	fmt.Println(n, iter, acc)
+	if iter == n {
+		return acc
+	}
+	return tailRecursiveAux(n, iter+1, acc+iter)
+}
+
+func GoldenFib(n int) float64 {
+	f := 1.618034
+	m := math.Pow(f, 6) - math.Pow(1-f, 6)
+	l := math.Round(m / math.Sqrt(5))
+	fmt.Println(f, m, l)
+	return l
+
 }

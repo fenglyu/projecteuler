@@ -147,6 +147,7 @@ func TestNextPermutation(t *testing.T) {
 	*/
 }
 
+/*
 func TestNextPermutationV2(t *testing.T) {
 	// Sort
 	sort.Ints(ar)
@@ -169,6 +170,7 @@ func TestNextPermutationV2(t *testing.T) {
 		t.Errorf("End of iterator errof %d", ar)
 	}
 }
+*/
 
 func TestNextPermutationV3(t *testing.T) {
 	// Sort
