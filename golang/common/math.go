@@ -5,6 +5,19 @@ import (
 	"math"
 )
 
+func Plus(a []int, b []int, r []int) {
+	for i := 0; i < len(r); i++ {
+		r[i] = 0
+	}
+
+	pos := len(r) - 1
+
+	j := pos
+	for {
+
+	}
+}
+
 func Multiple(a []int, b []int, r []int) {
 
 	pos := len(r) - 1
@@ -108,11 +121,13 @@ func TailFib(n int) int {
 }
 
 func tailRecursiveAux(n int, iter int, acc int) int {
-	fmt.Println(n, iter, acc)
+	//	fmt.Println(n, iter, acc)
 	if iter == n {
 		return acc
 	}
-	return tailRecursiveAux(n, iter+1, acc+iter)
+	//return tailRecursiveAux(n, iter++, acc+iter)
+	iter++
+	return tailRecursiveAux(n, iter, acc+iter)
 }
 
 func GoldenFib(n int) float64 {
@@ -122,4 +137,21 @@ func GoldenFib(n int) float64 {
 	fmt.Println(f, m, l)
 	return l
 
+}
+
+func TailFibLarge(n []int) []int {
+	if n <= 2 {
+		return 1
+	}
+	return tailRecursiveAuxLarge(n, 1, 1)
+}
+
+func tailRecursiveAuxLarge(n []int, iter int, acc int) int {
+	//	fmt.Println(n, iter, acc)
+	if iter == n {
+		return acc
+	}
+	//return tailRecursiveAux(n, iter++, acc+iter)
+	iter++
+	return tailRecursiveAuxLarge(n, iter, acc+iter)
 }
