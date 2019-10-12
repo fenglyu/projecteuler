@@ -1,10 +1,74 @@
 package common
 
 import (
+	"fmt"
 	"math"
 	"reflect"
 	"testing"
 )
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func TestPlus(t *testing.T) {
+
+	a := []int{9, 4, 4, 5, 6}
+	b := []int{4, 5, 3, 1}
+	expected := []int{0, 9, 8, 9, 8, 7}
+
+	result := make([]int, max(len(a), len(b)+2))
+	for i := 0; i < len(result); i++ {
+		result[i] = 0
+	}
+
+	Plus(a, b, result)
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Result: %d, Expected: %d", result, expected)
+	}
+}
+
+func TestPlus2(t *testing.T) {
+
+	sum := 0
+	init := []int{0}
+	result := make([]int, 20)
+	for i := 1234; i <= 2458; i++ {
+		sum += i
+		f, ar := i, []int{0, 0, 0, 0, 0}
+		c := len(ar) - 1
+		for {
+			if f == 0 {
+				break
+			}
+			ar[c] = f % 10
+			f = f / 10
+			c--
+		}
+
+		//	fmt.Println(ar)
+		//	result = make([]int, 20)
+		Plus(init, ar, result)
+		init = make([]int, (cap(result)+1)*2)
+		copy(init, result)
+		fmt.Println(init)
+	}
+
+	fmt.Println(result)
+	r := 0
+	//	for i := 0; i < len(result); i++ {
+	//		fmt.Println(result[:i])
+	//		r = r*10 + int(result[i])
+	//	}
+	fmt.Println(sum)
+	if sum != r {
+		t.Errorf("Result: %d, Expected: %d", r, sum)
+	}
+}
 
 func TestMultipleWithResultSmall(t *testing.T) {
 	a := []int{2, 3, 4, 5, 6}

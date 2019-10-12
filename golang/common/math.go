@@ -3,18 +3,39 @@ package common
 import (
 	"fmt"
 	"math"
+	"reflect"
 )
 
 func Plus(a []int, b []int, r []int) {
+
 	for i := 0; i < len(r); i++ {
 		r[i] = 0
 	}
 
-	pos := len(r) - 1
+	j := len(r) - 1
+	c := 0
 
-	j := pos
 	for {
 
+		if c >= len(a) && c >= len(b) {
+			break
+		}
+
+		pos := len(r) - 1 - j
+		pa := len(a) - 1 - pos
+		pb := len(b) - 1 - pos
+
+		if pa >= 0 && pb >= 0 {
+			r[j] = (a[pa] + b[pb]) % 10
+			r[j-1] += (a[pa] + b[pb]) / 10
+		} else if pa < 0 {
+			r[j] = b[pb]
+		} else if pb < 0 {
+			r[j] = a[pa]
+		}
+
+		c++
+		j--
 	}
 }
 
@@ -140,18 +161,25 @@ func GoldenFib(n int) float64 {
 }
 
 func TailFibLarge(n []int) []int {
-	if n <= 2 {
-		return 1
+	if reflect.DeepEqual(n, []int{1}) || reflect.DeepEqual(n, []int{2}) {
+		return []int{1}
 	}
-	return tailRecursiveAuxLarge(n, 1, 1)
+	return tailRecursiveAuxLarge(n, []int{1}, []int{1})
 }
 
-func tailRecursiveAuxLarge(n []int, iter int, acc int) int {
+func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 	//	fmt.Println(n, iter, acc)
-	if iter == n {
+	//	if iter == n {
+	if reflect.DeepEqual(iter, n) {
 		return acc
 	}
+
+	r1 := make([]int, len(iter)+1)
+	Plus(iter, []int{1}, r1)
+	iter = r1
+
+	r2 := make([]int, len(iter)+len(acc)+1)
+	Plus(acc, iter, r2)
+	return tailRecursiveAuxLarge(n, iter, r2)
 	//return tailRecursiveAux(n, iter++, acc+iter)
-	iter++
-	return tailRecursiveAuxLarge(n, iter, acc+iter)
 }
