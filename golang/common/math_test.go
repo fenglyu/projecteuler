@@ -14,6 +14,16 @@ func max(a int, b int) int {
 	return b
 }
 
+func TestNumbericLength(t *testing.T) {
+
+	nums, expected := []int{0, 9, 8, 9, 8, 7}, 5
+
+	n := NumbericLength(nums)
+
+	if n != expected {
+		t.Errorf("Result: %d, Expected: %d", n, expected)
+	}
+}
 func TestPlus(t *testing.T) {
 
 	a := []int{9, 4, 4, 5, 6}
@@ -50,12 +60,11 @@ func TestPlus2(t *testing.T) {
 			c--
 		}
 
-		//	fmt.Println(ar)
-		//	result = make([]int, 20)
 		Plus(init, ar, result)
-		init = make([]int, (cap(result)+1)*2)
+		init = make([]int, len(result))
+		fmt.Println(ar, result)
 		copy(init, result)
-		fmt.Println(init)
+		//fmt.Println(init)
 	}
 
 	fmt.Println(result)
@@ -67,6 +76,24 @@ func TestPlus2(t *testing.T) {
 	fmt.Println(sum)
 	if sum != r {
 		t.Errorf("Result: %d, Expected: %d", r, sum)
+	}
+}
+
+func TestPlus3(t *testing.T) {
+
+	a := []int{9, 6, 1, 7}
+	b := []int{1, 8, 1, 3}
+	expected := []int{0, 9, 8, 9, 8, 7}
+
+	result := make([]int, max(len(a), len(b)+2))
+	for i := 0; i < len(result); i++ {
+		result[i] = 0
+	}
+
+	Plus(a, b, result)
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Result: %d, Expected: %d", result, expected)
 	}
 }
 

@@ -6,28 +6,45 @@ import (
 	"reflect"
 )
 
+// used for numberic arrays
+func NumbericLength(n []int) int {
+	i := 0
+	for i = 0; i < len(n); i++ {
+		if n[i] > 0 {
+			break
+		}
+	}
+	return len(n) - i
+}
+
 func Plus(a []int, b []int, r []int) {
 
 	for i := 0; i < len(r); i++ {
 		r[i] = 0
 	}
 
+	//	al, bl := NumbericLength(a), NumbericLength(b)
+
 	j := len(r) - 1
 	c := 0
 
+	pos, pa, pb := 0, 0, 0
 	for {
+		pos = len(r) - 1 - j
 
 		if c >= len(a) && c >= len(b) {
 			break
 		}
 
-		pos := len(r) - 1 - j
-		pa := len(a) - 1 - pos
-		pb := len(b) - 1 - pos
+		pos = len(r) - 1 - j
+		pa = len(a) - 1 - pos
+		pb = len(b) - 1 - pos
 
 		if pa >= 0 && pb >= 0 {
-			r[j] = (a[pa] + b[pb]) % 10
-			r[j-1] += (a[pa] + b[pb]) / 10
+			tmp := a[pa] + b[pb]
+			r[j] += tmp % 10
+			r[j-1] += r[j]/10 + tmp/10
+			r[j] %= 10
 		} else if pa < 0 {
 			r[j] = b[pb]
 		} else if pb < 0 {
@@ -37,6 +54,7 @@ func Plus(a []int, b []int, r []int) {
 		c++
 		j--
 	}
+
 }
 
 func Multiple(a []int, b []int, r []int) {
