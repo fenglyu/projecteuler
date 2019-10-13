@@ -1,6 +1,6 @@
 package common 
 import (
-	//	"fmt"
+	"fmt"
 	"math"
 	"reflect"
 	"testing"
@@ -192,4 +192,13 @@ func TestGoldenFib(t *testing.T) {
 	if !floatcompare(float64(fib), float64(expected)) {
 		t.Errorf("Result: %d, Expected: %d", int(fib), expected)
 	}
+}
+
+func TestTailFibLarge(t *testing.T) {
+	nums, expected := []int{0,1, 0}, []int{0,5, 5}
+	fib := TailFibLarge(nums)
+	fmt.Println(fib, expected)
+//	if !reflect.DeepEqual(fib, expected) {
+//		t.Errorf("Result: %d, Expected: %d", fib, expected)
+//	}
 }

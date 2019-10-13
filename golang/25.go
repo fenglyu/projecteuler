@@ -2,29 +2,36 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/fenglyu/projecteuler/golang/common"
 )
 
 func main() {
-	var sum int
-	sum = fib(1)
+	// problem 25
+	result := make([]int, 1001)
+	first, second := []int{1}, []int{1}
 
-	fmt.Printf("sum: %d\n", sum)
-	sum = fib(0)
-	fmt.Printf("sum: %d\n", sum)
+	i := 3
 
-	sum = fib(30)
-	fmt.Printf("sum: %d\n", sum)
+	for {
 
-}
+		common.Plus(first, second, result)
+		first = second
+		tmp := make([]int, len(result))
+		copy(tmp, result)
+		second = tmp
 
-func fib(n int) int {
-	if n == 0 {
-		return 0
+		ll := common.NumbericLength(result)
+		if ll >= 1000 {
+			idx := len(result) - ll
+			fmt.Println(len(result[idx:]), result[idx:])
+			break
+		}
+
+		i++
 	}
 
-	if n == 1 || n == 2 {
-		return 1
-	}
+	//	fmt.Println(result)
+	fmt.Println("index of the first term in the Fibonacci sequence to contain 1000 digits", i)
 
-	return fib(n-1) + fib(n-2)
 }

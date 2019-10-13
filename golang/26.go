@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/fenglyu/projecteuler/golang/common"
 )
 
 func main() {
-	c, sum := 1, 0
 
-	fmt.Printf("sum: %d\n", sum)
+	nums := []int{0, 4}
+	fib := common.TailFibLarge(nums)
+	fmt.Println(fib)
 }

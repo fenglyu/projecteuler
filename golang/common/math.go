@@ -47,14 +47,14 @@ func Plus(a []int, b []int, r []int) {
 			r[j] %= 10
 		} else if pa < 0 {
 			r[j] += b[pb]
-			r[j-1] += r[j]/10
+			r[j-1] += r[j] / 10
 			r[j] %= 10
 		} else if pb < 0 {
 			r[j] += a[pa]
-			r[j-1] += r[j]/10
+			r[j-1] += r[j] / 10
 			r[j] %= 10
 		}
-			
+
 		c++
 		j--
 	}
@@ -192,7 +192,10 @@ func TailFibLarge(n []int) []int {
 func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 	//	fmt.Println(n, iter, acc)
 	//	if iter == n {
-	if reflect.DeepEqual(iter, n) {
+
+	i, c := len(iter)-NumbericLength(iter), len(n)-NumbericLength(n)
+
+	if reflect.DeepEqual(iter[i:], n[c:]) {
 		return acc
 	}
 
@@ -200,8 +203,9 @@ func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 	Plus(iter, []int{1}, r1)
 	iter = r1
 
-	r2 := make([]int, len(iter)+len(acc)+1)
+	r2 := make([]int, len(acc)+1)
 	Plus(acc, iter, r2)
+
 	return tailRecursiveAuxLarge(n, iter, r2)
 	//return tailRecursiveAux(n, iter++, acc+iter)
 }
