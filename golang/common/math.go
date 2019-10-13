@@ -23,7 +23,7 @@ func Plus(a []int, b []int, r []int) {
 		r[i] = 0
 	}
 
-	//	al, bl := NumbericLength(a), NumbericLength(b)
+	al, bl := NumbericLength(a), NumbericLength(b)
 
 	j := len(r) - 1
 	c := 0
@@ -32,7 +32,7 @@ func Plus(a []int, b []int, r []int) {
 	for {
 		pos = len(r) - 1 - j
 
-		if c >= len(a) && c >= len(b) {
+		if c >= al && c >= bl {
 			break
 		}
 
@@ -46,11 +46,15 @@ func Plus(a []int, b []int, r []int) {
 			r[j-1] += r[j]/10 + tmp/10
 			r[j] %= 10
 		} else if pa < 0 {
-			r[j] = b[pb]
+			r[j] += b[pb]
+			r[j-1] += r[j]/10
+			r[j] %= 10
 		} else if pb < 0 {
-			r[j] = a[pa]
+			r[j] += a[pa]
+			r[j-1] += r[j]/10
+			r[j] %= 10
 		}
-
+			
 		c++
 		j--
 	}

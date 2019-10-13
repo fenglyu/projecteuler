@@ -1,7 +1,6 @@
-package common
-
+package common 
 import (
-	"fmt"
+	//	"fmt"
 	"math"
 	"reflect"
 	"testing"
@@ -24,12 +23,15 @@ func TestNumbericLength(t *testing.T) {
 		t.Errorf("Result: %d, Expected: %d", n, expected)
 	}
 }
+
 func TestPlus(t *testing.T) {
 
-	a := []int{9, 4, 4, 5, 6}
-	b := []int{4, 5, 3, 1}
-	expected := []int{0, 9, 8, 9, 8, 7}
+	//	a := []int{9, 4, 4, 5, 6}
+	a := []int{1 ,9 ,9 ,7, 6, 5}
+	//	b := []int{4, 5, 3, 1}
+	b := []int{0 ,2 ,3 ,5, 0}
 
+	expected := []int{0, 2, 0, 2, 1, 1, 5} 
 	result := make([]int, max(len(a), len(b)+2))
 	for i := 0; i < len(result); i++ {
 		result[i] = 0
@@ -47,7 +49,7 @@ func TestPlus2(t *testing.T) {
 	sum := 0
 	init := []int{0}
 	result := make([]int, 20)
-	for i := 1234; i <= 2458; i++ {
+	for i := 1234; i <= 4458; i++ {
 		sum += i
 		f, ar := i, []int{0, 0, 0, 0, 0}
 		c := len(ar) - 1
@@ -62,18 +64,14 @@ func TestPlus2(t *testing.T) {
 
 		Plus(init, ar, result)
 		init = make([]int, len(result))
-		fmt.Println(ar, result)
+		//fmt.Println(ar, result)
 		copy(init, result)
-		//fmt.Println(init)
 	}
 
-	fmt.Println(result)
 	r := 0
-	//	for i := 0; i < len(result); i++ {
-	//		fmt.Println(result[:i])
-	//		r = r*10 + int(result[i])
-	//	}
-	fmt.Println(sum)
+  for i := 0; i < len(result); i++ {
+    r = r*10 + int(result[i])
+  }
 	if sum != r {
 		t.Errorf("Result: %d, Expected: %d", r, sum)
 	}
@@ -83,7 +81,7 @@ func TestPlus3(t *testing.T) {
 
 	a := []int{9, 6, 1, 7}
 	b := []int{1, 8, 1, 3}
-	expected := []int{0, 9, 8, 9, 8, 7}
+	expected := []int{1, 1, 4, 3, 0}
 
 	result := make([]int, max(len(a), len(b)+2))
 	for i := 0; i < len(result); i++ {
@@ -92,7 +90,8 @@ func TestPlus3(t *testing.T) {
 
 	Plus(a, b, result)
 
-	if !reflect.DeepEqual(result, expected) {
+	n := len(result) - NumbericLength(result)
+	if !reflect.DeepEqual(result[n:], expected) {
 		t.Errorf("Result: %d, Expected: %d", result, expected)
 	}
 }
