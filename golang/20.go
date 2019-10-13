@@ -3,41 +3,8 @@ package main
 import (
 	"fmt"
 	//	"math"
+	"github.com/fenglyu/projecteuler/golang/common"
 )
-
-func mul(a interface{}, b interface{}) []int {
-
-	f := a.([]int)
-	g := b.([]int)
-
-	if len(f) < len(g) {
-		t := f
-		f = g
-		g = t
-	}
-
-	result := make([]int, len(f)+len(g))
-
-	for j := len(g) - 1; j >= 0; j-- {
-		//initially pos (index of result ) has the same relative postion as j in array
-		pos := len(result) - (len(g) - j)
-		for i := len(f) - 1; i >= 0; i-- {
-			temp := g[j] * f[i]
-			result[pos] += temp % 10
-			result[pos-1] += temp / 10
-			pos--
-		}
-		//	fmt.Println(result)
-	}
-
-	for i := len(result) - 1; i > 0; i-- {
-		temp := result[i]
-		result[i] = temp % 10
-		result[i-1] += temp / 10
-	}
-
-	return result
-}
 
 func solution1() {
 
@@ -59,7 +26,7 @@ func solution1() {
 			count--
 		}
 
-		res = mul(res, ar)
+		res = common.MultipleWithResult(res, ar)
 
 	}
 	//	fmt.Println(res)
@@ -70,32 +37,6 @@ func solution1() {
 	}
 
 	fmt.Println(sum)
-}
-
-func mul2(a []int, b []int, r []int) { //[]int {
-
-	pos := len(r) - 1
-
-	for i := 0; i < len(r); i++ {
-		r[i] = 0
-	}
-
-	for i := len(a) - 1; i >= 0; i-- {
-		off := len(a) - 1 - i
-
-		for j := len(b) - 1; j >= 0; j-- {
-			//			fmt.Println(i, j, pos, off, pos-off, pos-off-1)
-			tmp := b[j] * a[i]
-			r[pos-off] += tmp % 10
-			//	if pos-off-1 > 0 {
-			r[pos-off-1] += r[pos-off]/10 + tmp/10
-			//	}
-			r[pos-off] %= 10
-			off++
-		}
-	}
-
-	//	return r
 }
 
 func solution2() {
@@ -121,7 +62,7 @@ func solution2() {
 			count--
 		}
 
-		mul2(res, ar, r)
+		common.Multiple(res, ar, r)
 		//fmt.Println(res[190:], ar, r[990:])
 		for j := 0; j < len(res); j++ {
 			res[j] = r[len(r)-len(res)+j]
