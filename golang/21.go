@@ -1,8 +1,8 @@
 /*
-Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+Let d(n) be defined as the sum of proper common.Divisors of n (numbers less than n which divide evenly into n).
 If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
 
-For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+For example, the proper common.Divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper common.Divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
 
 Evaluate the sum of all the amicable numbers under 10000.
 */
@@ -11,39 +11,9 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/fenglyu/projecteuler/golang/common"
 )
-
-func divisor(n int) []int {
-
-	nums := make([]int, 500)
-
-	for i := 0; i < len(nums); i++ {
-		nums[i] = 0
-	}
-
-	i, c := 1, 0
-
-	for {
-		if i*i > n {
-			break
-		}
-
-		tmp := n % i
-		if tmp == 0 {
-			nums[c] = i
-			// only collect 1, ingore the number itself
-			if i != 1 && i != n/i {
-				c++
-				nums[c] = n / i
-			}
-		}
-		i++
-		c++
-		//fmt.Println("c:  ", c)
-	}
-
-	return nums
-}
 
 func sum1j(ar []int) int {
 
@@ -57,20 +27,20 @@ func sum1j(ar []int) int {
 func main() {
 	sum := 40
 
-	nums := divisor(sum)
+	nums := common.Divisor(sum)
 	fmt.Println("sum: ", nums)
 	// 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110;
-	fmt.Println("220: ", divisor(220))
+	fmt.Println("220: ", common.Divisor(220))
 
 	s := 0
-	for _, v := range divisor(220) {
+	for _, v := range common.Divisor(220) {
 		s += v
 	}
 	fmt.Println("220: ", s)
 	// 1, 2, 4, 71 and 142
-	fmt.Println("284: ", divisor(284))
+	fmt.Println("284: ", common.Divisor(284))
 	s = 0
-	for _, v := range divisor(284) {
+	for _, v := range common.Divisor(284) {
 		s += v
 	}
 	fmt.Println("284: ", s)
@@ -81,9 +51,9 @@ func main() {
 	ar := make([]int, 100)
 
 	for i := 1; i < 10001; i++ {
-		tf := divisor(i)
+		tf := common.Divisor(i)
 		f := sum1j(tf)
-		ts := divisor(f)
+		ts := common.Divisor(f)
 		s := sum1j(ts)
 		//fmt.Println(f, s)
 		if f != 1 && s != 1 && i == s && i != f {
