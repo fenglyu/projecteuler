@@ -19,8 +19,11 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 */
 
-var LEN int = 101
-var Demo [101][101]int
+var LEN int = 1001
+var Demo [1001][1001]int
+
+//var LEN int = 5
+//var Demo [5][5]int
 
 func square() int {
 
@@ -35,56 +38,74 @@ func main() {
 			Demo[i][j] = 0
 		}
 	}
-	fmt.Println(LEN)
-	//	fmt.Println(Demo)
 
 	x, y := LEN/2, LEN/2
-	//	fmt.Println(init)
 
 	i, w := 1, 1
+
+	Demo[x][y] = i
+	// sum of the numbers on the diagonals starts
+	sum := i
 
 	for {
 
 		if i >= LEN*LEN {
 			break
 		}
-		Demo[x][y] = i
 
 		// 1. 1 --> 2
 		y++
 		i++
 		Demo[x][y] = i
+		//		fmt.Println("1. 1 --> 2 ", x, y)
 
 		// 2. up -> down
-		for t := 0; t < w; t++ {
+		for t := 0; t < 2*w-1; t++ {
 			x++
 			i++
+			//			fmt.Println("2. up -> down ", x, y, i)
 			Demo[x][y] = i
+
 		}
+		sum += i
+		//		fmt.Println(i)
 
 		// 3. right -> left
 		for t := 0; t < w*2; t++ {
 			y--
 			i++
+			//			fmt.Println("3. right -> left ", x, y, i)
 			Demo[x][y] = i
+
 		}
+		sum += i
+		//		fmt.Println(i)
 
 		// 4. down -> up
 		for t := 0; t < w*2; t++ {
 			x--
 			i++
+			//			fmt.Println("4. down -> up ", x, y, i)
 			Demo[x][y] = i
+
 		}
 
+		sum += i
+		//fmt.Println(i)
 		// 5. left -> right
 		for t := 0; t < w*2; t++ {
 			y++
 			i++
+			//			fmt.Println("5. left -> right ", x, y, i)
 			Demo[x][y] = i
+
 		}
+		sum += i
+		//fmt.Println(i)
 
 		w++
 	}
 
-	fmt.Println(Demo)
+	//	fmt.Println(Demo)
+	fmt.Println(sum)
 }
