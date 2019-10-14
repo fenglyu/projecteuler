@@ -9,6 +9,9 @@ import (
 func main() {
 
 	nums := []int{0, 4}
-	fib := common.TailFibLarge(nums)
-	fmt.Println(fib)
+
+	max := 0
+	for {
+
+	}
 }

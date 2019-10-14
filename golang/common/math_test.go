@@ -1,7 +1,6 @@
-package common 
+package common
+
 import (
-	"fmt"
-	"math"
 	"reflect"
 	"testing"
 )
@@ -27,11 +26,11 @@ func TestNumbericLength(t *testing.T) {
 func TestPlus(t *testing.T) {
 
 	//	a := []int{9, 4, 4, 5, 6}
-	a := []int{1 ,9 ,9 ,7, 6, 5}
+	a := []int{1, 9, 9, 7, 6, 5}
 	//	b := []int{4, 5, 3, 1}
-	b := []int{0 ,2 ,3 ,5, 0}
+	b := []int{0, 2, 3, 5, 0}
 
-	expected := []int{0, 2, 0, 2, 1, 1, 5} 
+	expected := []int{0, 2, 0, 2, 1, 1, 5}
 	result := make([]int, max(len(a), len(b)+2))
 	for i := 0; i < len(result); i++ {
 		result[i] = 0
@@ -69,9 +68,9 @@ func TestPlus2(t *testing.T) {
 	}
 
 	r := 0
-  for i := 0; i < len(result); i++ {
-    r = r*10 + int(result[i])
-  }
+	for i := 0; i < len(result); i++ {
+		r = r*10 + int(result[i])
+	}
 	if sum != r {
 		t.Errorf("Result: %d, Expected: %d", r, sum)
 	}
@@ -156,49 +155,4 @@ func TestDivisor(t *testing.T) {
 	if !reflect.DeepEqual(sum[:17], expected) {
 		t.Errorf("Result: %d, Expected: %d", sum, expected)
 	}
-}
-
-func TestFib(t *testing.T) {
-	num, expected := 10, 55
-	fib := Fib(num)
-	if fib != expected {
-		t.Errorf("Result: %d, Expected: %d", fib, expected)
-	}
-}
-
-//
-func TestTailFib(t *testing.T) {
-	num, expected := 10, 55
-	fib := TailFib(num)
-	if fib != expected {
-		//if !floatcompare(float64(fib), float64(expected)) {
-		t.Errorf("Result: %d, Expected: %d", fib, expected)
-	}
-}
-
-//const EPSILON = 1e-9
-const float64EqualityThreshold = 1e-9
-
-func floatcompare(a, b float64) bool {
-	return math.Abs(a-b) <= float64EqualityThreshold*(math.Abs(a)+math.Abs(b))
-}
-
-func TestGoldenFib(t *testing.T) {
-
-	num, expected := 10, 55
-	fib := GoldenFib(num)
-
-	//	fmt.Println(fib, expected)
-	if !floatcompare(float64(fib), float64(expected)) {
-		t.Errorf("Result: %d, Expected: %d", int(fib), expected)
-	}
-}
-
-func TestTailFibLarge(t *testing.T) {
-	nums, expected := []int{0,1, 0}, []int{0,5, 5}
-	fib := TailFibLarge(nums)
-	fmt.Println(fib, expected)
-//	if !reflect.DeepEqual(fib, expected) {
-//		t.Errorf("Result: %d, Expected: %d", fib, expected)
-//	}
 }
