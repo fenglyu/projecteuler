@@ -155,4 +155,30 @@ func DivideV1(a int, b int) (int, int) {
 
 func QuickDivision(a int, b int) (int, int) {
 
+	counter, power, mid, appr := 0, 1, 0, 0
+
+	for {
+		if power*b > a {
+			break
+		}
+
+		counter++
+		power = power * 2
+	}
+	p, q := power, power/2
+
+	for k := 1; k < counter; k++ {
+		comp := (p + q) / 2
+		mid = comp * b
+
+		if mid <= a {
+			appr = mid
+			q = comp
+		} else {
+			p = comp
+		}
+	}
+
+	r := a - appr
+	return q, r
 }

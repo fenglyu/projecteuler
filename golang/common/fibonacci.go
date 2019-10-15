@@ -1,6 +1,8 @@
 package common
 
 import (
+	//	"fmt"
+	"math"
 	"reflect"
 )
 
@@ -58,4 +60,48 @@ func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 
 	return tailRecursiveAuxLarge(n, iter, r2)
 	//return tailRecursiveAux(n, iter++, acc+iter)
+}
+
+func GoldenFib(n int64) float64 {
+	//t := n
+	if n <= 2 {
+		return 1
+	}
+
+	var c float64 = 1
+	var t int64 = 2
+
+	for {
+		if t >= n {
+			break
+		}
+		c = math.Round(float64(c) * 1.61803)
+		t++
+
+		//fmt.Println(c, t)
+	}
+	return c
+}
+
+func ArrayToNum(nums []int) float64 {
+	var s float64 = 0
+	for i := 0; i < len(nums); i++ {
+		s = s*10 + float64(nums[i])
+	}
+	return s
+}
+
+func NumToArray(num int) []int {
+
+	f, ar := num, []int{0, 0, 0, 0, 0}
+	c := len(ar) - 1
+	for {
+		if f == 0 {
+			break
+		}
+		ar[c] = f % 10
+		f = f / 10
+		c--
+	}
+	return ar
 }

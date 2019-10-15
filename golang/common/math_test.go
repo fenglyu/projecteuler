@@ -169,6 +169,24 @@ func TestDivideV1(t *testing.T) {
 	}
 }
 
+// https://www.wikiwand.com/zh-cn/带余除法#/cite_ref-hw_1-2
 func TestQuickDivision(t *testing.T) {
+
+	// Test 1
+	a, b := 237, 9
+	eq, er := 26, 3
+	q, r := QuickDivision(a, b)
+	if q != eq || r != er {
+		t.Errorf("Result: %d, Expected: %d", q, eq)
+		t.Errorf("Result: %d, Expected: %d", r, er)
+	}
+	// Test 2
+	a, b = 234324342342, 29
+	eq, er = 8080149735, 27
+	q, r = QuickDivision(a, b)
+	if q != eq || r != er {
+		t.Errorf("Result: %d, Expected: %d", q, eq)
+		t.Errorf("Result: %d, Expected: %d", r, er)
+	}
 
 }
