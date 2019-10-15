@@ -156,3 +156,19 @@ func TestDivisor(t *testing.T) {
 		t.Errorf("Result: %d, Expected: %d", sum, expected)
 	}
 }
+
+func TestDivideV1(t *testing.T) {
+	a, b := 32, 5
+	eq, er := 6, 2
+
+	q, r := DivideV1(a, b)
+
+	if q != eq || r != er {
+		t.Errorf("Result: %d, Expected: %d", q, eq)
+		t.Errorf("Result: %d, Expected: %d", r, er)
+	}
+}
+
+func TestQuickDivision(t *testing.T) {
+
+}

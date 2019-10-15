@@ -139,8 +139,20 @@ func Divisor(n int) []int {
 	return nums
 }
 
-/*
-func Divide(n int) int {
+func DivideV1(a int, b int) (int, int) {
+	q, r := 0, a
+	for {
+		if r < b {
+			break
+		}
+
+		r = r - b
+		q = q + 1
+	}
+
+	return q, r
+}
+
+func QuickDivision(a int, b int) (int, int) {
 
 }
-*/
