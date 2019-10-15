@@ -52,7 +52,28 @@ func Plus(a []int, b []int, r []int) {
 		c++
 		j--
 	}
+}
 
+func PlusV2(a []int, b []int, r []int) {
+	pos := len(a)
+	carry := 0
+
+	for {
+		pos--
+		if pos < 0 {
+			break
+		}
+
+		total := a[pos] + b[pos] + carry
+		if total > 9 {
+			r[pos] = total - 10
+			carry = 1
+		} else {
+			r[pos+1] = total
+			carry = 0
+		}
+	}
+	r[0] = carry
 }
 
 func Multiple(a []int, b []int, r []int) {

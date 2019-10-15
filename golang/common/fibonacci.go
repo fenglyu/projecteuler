@@ -44,7 +44,6 @@ func TailFibLarge(n []int) []int {
 func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 	//	fmt.Println(n, iter, acc)
 	//	if iter == n {
-
 	i, c := len(iter)-NumbericLength(iter), len(n)-NumbericLength(n)
 
 	if reflect.DeepEqual(iter[i:], n[c:]) {
@@ -63,7 +62,6 @@ func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
 }
 
 func GoldenFib(n int64) float64 {
-	//t := n
 	if n <= 2 {
 		return 1
 	}
@@ -77,8 +75,6 @@ func GoldenFib(n int64) float64 {
 		}
 		c = math.Round(float64(c) * 1.61803)
 		t++
-
-		//fmt.Println(c, t)
 	}
 	return c
 }

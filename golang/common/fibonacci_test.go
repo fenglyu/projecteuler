@@ -1,6 +1,7 @@
 package common
 
 import (
+	"fmt"
 	"math"
 	"reflect"
 	"testing"
@@ -16,11 +17,15 @@ func TestFib(t *testing.T) {
 
 //
 func TestTailFib(t *testing.T) {
-	num, expected := 10, 55
-	fib := TailFib(num)
-	if fib != expected {
-		//if !floatcompare(float64(fib), float64(expected)) {
-		t.Errorf("Result: %d, Expected: %d", fib, expected)
+	var fib int = 0
+	var gold float64 = 0
+
+	for i := 1; i <= 101; i++ {
+		gold = GoldenFib(int64(i))
+		fib = TailFib(i)
+		if !floatcompare(float64(fib), gold) {
+			t.Errorf("Result: %d, Expected: %f", fib, gold)
+		}
 	}
 }
 
@@ -65,6 +70,7 @@ func TestGoldenFibV2(t *testing.T) {
 		fib = TailFibLarge(NumToArray(i))
 		fi := len(fib) - NumbericLength(fib)
 		f := ArrayToNum(fib[fi:])
+		fmt.Println(f, fib[fi:])
 
 		if !floatcompare(f, gold) {
 			t.Errorf("Result: %f, Expected: %f", f, gold)
