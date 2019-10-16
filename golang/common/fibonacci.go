@@ -7,7 +7,10 @@ import (
 )
 
 func Fib(n int) int {
-	if n <= 2 {
+	if n == 1 {
+		return 1
+	}
+	if n == 2 {
 		return 1
 	}
 
@@ -17,21 +20,14 @@ func Fib(n int) int {
 // https://stackoverflow.com/questions/33923/what-is-tail-recursion
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, ...
 
-func TailFib(n int) int {
-	if n <= 2 {
-		return 1
+func TailFib(n int, a int, b int) int {
+	if n == 0 {
+		return a
 	}
-	return tailRecursiveAux(n, 1, 1)
-}
-
-func tailRecursiveAux(n int, iter int, acc int) int {
-	//	fmt.Println(n, iter, acc)
-	if iter == n {
-		return acc
+	if n == 1 {
+		return b
 	}
-	//return tailRecursiveAux(n, iter++, acc+iter)
-	iter++
-	return tailRecursiveAux(n, iter, acc+iter)
+	return TailFib(n-1, b, a+b)
 }
 
 func TailFibLarge(n []int) []int {

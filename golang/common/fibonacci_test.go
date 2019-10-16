@@ -8,10 +8,15 @@ import (
 )
 
 func TestFib(t *testing.T) {
-	num, expected := 10, 55
-	fib := Fib(num)
-	if fib != expected {
-		t.Errorf("Result: %d, Expected: %d", fib, expected)
+	var fib int = 0
+	var gold float64 = 0
+
+	for i := 1; i <= 20; i++ {
+		gold = GoldenFib(int64(i))
+		fib = Fib(i)
+		if !floatcompare(float64(fib), gold) {
+			t.Errorf("Result: %d, Expected: %f", fib, gold)
+		}
 	}
 }
 
@@ -20,11 +25,14 @@ func TestTailFib(t *testing.T) {
 	var fib int = 0
 	var gold float64 = 0
 
+	//fib = TailFib(10, 0, 1)
+	fmt.Printf("[TestTailFib] Result: %d \n", fib)
 	for i := 1; i <= 101; i++ {
+		fib = TailFib(i, 0, 1)
 		gold = GoldenFib(int64(i))
-		fib = TailFib(i)
+		// fmt.Printf("[TestTailFib] Result: %d, Expected: %f\n", fib, gold)
 		if !floatcompare(float64(fib), gold) {
-			t.Errorf("Result: %d, Expected: %f", fib, gold)
+			t.Errorf("The %d number is Result: %d, Expected: %f", i, fib, gold)
 		}
 	}
 }
@@ -70,7 +78,7 @@ func TestGoldenFibV2(t *testing.T) {
 		fib = TailFibLarge(NumToArray(i))
 		fi := len(fib) - NumbericLength(fib)
 		f := ArrayToNum(fib[fi:])
-		fmt.Println(f, fib[fi:])
+		//		fmt.Println(f, fib[fi:])
 
 		if !floatcompare(f, gold) {
 			t.Errorf("Result: %f, Expected: %f", f, gold)
