@@ -98,8 +98,6 @@ func GoldenFibBigInt(n *big.Int) *big.Int {
 		return a
 	}
 
-	//	var limit big.Int
-	//	limit.Exp(big.NewInt(10), big.NewInt(99), nil)
 	i := big.NewInt(3)
 	for {
 		if n.Cmp(i) <= 0 {
@@ -111,7 +109,6 @@ func GoldenFibBigInt(n *big.Int) *big.Int {
 
 		i.Add(i, big.NewInt(1))
 	}
-
 	return a
 }
 
@@ -124,8 +121,8 @@ func GoldenFibBig(n *big.Int) *big.Float {
 		return a
 	}
 
-	c := big.NewFloat(1)
-	t := big.NewInt(2)
+	c := big.NewFloat(2)
+	t := big.NewInt(3)
 
 	goldenRate := big.NewFloat(1.6180339887499)
 
@@ -133,13 +130,13 @@ func GoldenFibBig(n *big.Int) *big.Float {
 		if t.Cmp(n) >= 0 {
 			break
 		}
-		c = c.Mul(c, goldenRate)
-		//		fmt.Println(c)
+		c.Mul(c, goldenRate)
+		fmt.Println(c)
 		f := new(big.Float).SetPrec(2).SetMode(big.ToNearestAway).Set(c)
 		//		fmt.Println(f)
-		fmt.Printf("  %g", f)
-
+		fmt.Println(f)
 		c = f
+
 		t.Add(t, big.NewInt(1))
 	}
 
