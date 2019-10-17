@@ -1,7 +1,7 @@
 package common
 
 import (
-	//	"fmt"
+	"fmt"
 	"math"
 	"math/big"
 	//	"reflect"
@@ -133,7 +133,13 @@ func GoldenFibBig(n *big.Int) *big.Float {
 		if t.Cmp(n) >= 0 {
 			break
 		}
-		c = c.Mul(c, goldenRate).SetPrec(2).SetMode(big.ToNearestAway)
+		c = c.Mul(c, goldenRate)
+		//		fmt.Println(c)
+		f := new(big.Float).SetPrec(2).SetMode(big.ToNearestAway).Set(c)
+		//		fmt.Println(f)
+		fmt.Printf("  %g", f)
+
+		c = f
 		t.Add(t, big.NewInt(1))
 	}
 
