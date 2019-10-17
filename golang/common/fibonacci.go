@@ -4,7 +4,7 @@ import (
 	//	"fmt"
 	"math"
 	"math/big"
-	"reflect"
+	//	"reflect"
 )
 
 func Fib(n int64) int64 {
@@ -31,31 +31,20 @@ func TailFib(n int64, a int64, b int64) int64 {
 	return TailFib(n-1, b, a+b)
 }
 
-func TailFibLarge(n []int) []int {
-	if reflect.DeepEqual(n, []int{1}) || reflect.DeepEqual(n, []int{2}) {
+func TailFibArray(n []int, a []int, b []int) []int {
+
+	i := len(n) - NumbericLength(n)
+	if n[i] <= 2 {
 		return []int{1}
 	}
-	return tailRecursiveAuxLarge(n, []int{1}, []int{1})
-}
 
-func tailRecursiveAuxLarge(n []int, iter []int, acc []int) []int {
-	//	fmt.Println(n, iter, acc)
-	//	if iter == n {
-	i, c := len(iter)-NumbericLength(iter), len(n)-NumbericLength(n)
+	r1 := make([]int, len(n)+1)
+	Plus(n, []int{-1}, r1)
 
-	if reflect.DeepEqual(iter[i:], n[c:]) {
-		return acc
-	}
+	r2 := make([]int, len(n)+1)
+	Plus(a, b, r2)
 
-	r1 := make([]int, len(iter)+1)
-	Plus(iter, []int{1}, r1)
-	iter = r1
-
-	r2 := make([]int, len(acc)+1)
-	Plus(acc, iter, r2)
-
-	return tailRecursiveAuxLarge(n, iter, r2)
-	//return tailRecursiveAux(n, iter++, acc+iter)
+	return TailFibArray(r1, a, r2)
 }
 
 func GoldenFib(n int64) float64 {
@@ -76,10 +65,10 @@ func GoldenFib(n int64) float64 {
 	return c
 }
 
-func ArrayToNum(nums []int) float64 {
-	var s float64 = 0
+func ArrayToNum(nums []int) int64 {
+	var s int64 = 0
 	for i := 0; i < len(nums); i++ {
-		s = s*10 + float64(nums[i])
+		s = s*10 + int64(nums[i])
 	}
 	return s
 }
@@ -113,7 +102,7 @@ func GoldenFibBigInt(n *big.Int) *big.Int {
 	//	limit.Exp(big.NewInt(10), big.NewInt(99), nil)
 	i := big.NewInt(3)
 	for {
-		if n.Cmp(i) > 0 {
+		if n.Cmp(i) <= 0 {
 			break
 		}
 
@@ -124,4 +113,29 @@ func GoldenFibBigInt(n *big.Int) *big.Int {
 	}
 
 	return a
+}
+
+func GoldenFibBig(n *big.Int) *big.Float {
+
+	a := big.NewFloat(1)
+	two := big.NewInt(2)
+
+	if n.Cmp(two) <= 0 {
+		return a
+	}
+
+	c := big.NewFloat(1)
+	t := big.NewInt(2)
+
+	goldenRate := big.NewFloat(1.6180339887499)
+
+	for {
+		if t.Cmp(n) >= 0 {
+			break
+		}
+		c = c.Mul(c, goldenRate).SetPrec(2).SetMode(big.ToNearestAway)
+		t.Add(t, big.NewInt(1))
+	}
+
+	return c
 }
