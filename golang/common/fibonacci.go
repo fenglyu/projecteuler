@@ -3,10 +3,11 @@ package common
 import (
 	//	"fmt"
 	"math"
+	"math/big"
 	"reflect"
 )
 
-func Fib(n int) int {
+func Fib(n int64) int64 {
 	if n == 1 {
 		return 1
 	}
@@ -20,7 +21,7 @@ func Fib(n int) int {
 // https://stackoverflow.com/questions/33923/what-is-tail-recursion
 // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, ...
 
-func TailFib(n int, a int, b int) int {
+func TailFib(n int64, a int64, b int64) int64 {
 	if n == 0 {
 		return a
 	}
@@ -69,7 +70,7 @@ func GoldenFib(n int64) float64 {
 		if t >= n {
 			break
 		}
-		c = math.Round(float64(c) * 1.61803)
+		c = math.Round(float64(c) * 1.6180339887499)
 		t++
 	}
 	return c
@@ -96,4 +97,31 @@ func NumToArray(num int) []int {
 		c--
 	}
 	return ar
+}
+
+func GoldenFibBigInt(n *big.Int) *big.Int {
+
+	a := big.NewInt(1)
+	b := big.NewInt(1)
+	two := big.NewInt(2)
+
+	if n.Cmp(two) <= 0 {
+		return a
+	}
+
+	//	var limit big.Int
+	//	limit.Exp(big.NewInt(10), big.NewInt(99), nil)
+	i := big.NewInt(3)
+	for {
+		if n.Cmp(i) > 0 {
+			break
+		}
+
+		a.Add(a, b)
+		a, b = b, a
+
+		i.Add(i, big.NewInt(1))
+	}
+
+	return a
 }
