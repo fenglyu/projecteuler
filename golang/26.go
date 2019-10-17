@@ -30,6 +30,6 @@ func main() {
 	var i int64
 	for i = 2; i < 1001; i++ {
 		b := big.NewRat(1, i)
-		fmt.Println(b.FloatString(100))
+		fmt.Println(i, b.FloatString(100))
 	}
 }
