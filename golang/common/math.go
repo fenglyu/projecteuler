@@ -203,3 +203,49 @@ func QuickDivision(a int, b int) (int, int) {
 	r := a - appr
 	return q, r
 }
+
+func PostiveSub(a []int, b []int, r []int) {
+	// assuem a > b
+
+	for i := 0; i < len(r); i++ {
+		r[i] = 0
+	}
+
+	al, bl := NumbericLength(a), NumbericLength(b)
+
+	c := 0
+	j := len(r) - 1
+	pos, pa, pb := 0, 0, 0
+
+	for {
+		pos = len(r) - 1 - j
+
+		pa = al - 1 - pos
+		pb = bl - 1 - pos
+
+		if c >= al && c >= bl {
+			break
+		}
+
+		if pa >= 0 && pb >= 0 {
+			if a[pa] > b[pb] {
+				r[j] = a[pa] - b[pb]
+			} else {
+				r[j] = a[pa] + 10 - b[pb]
+				for k := pa - 1; k >= 0; k-- {
+					if a[k] == 0 {
+						a[k] = 9
+					} else {
+						a[k] = a[k] - 1
+						break
+					}
+				}
+			}
+		} else if pb < 0 {
+			r[j] = a[pa]
+		}
+
+		c++
+		j--
+	}
+}

@@ -1,6 +1,7 @@
 package common
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -95,6 +96,40 @@ func TestPlus3(t *testing.T) {
 	}
 }
 
+/*
+func TestPlusV2(t *testing.T) {
+
+	sum := 0
+	init := []int{0}
+	result := make([]int, 20)
+	for i := 1234; i <= 4458; i++ {
+		sum += i
+		f, ar := i, []int{0, 0, 0, 0, 0}
+		c := len(ar) - 1
+		for {
+			if f == 0 {
+				break
+			}
+			ar[c] = f % 10
+			f = f / 10
+			c--
+		}
+		PlusV2(init, ar, result)
+		init = make([]int, len(result))
+		//fmt.Println(ar, result)
+		copy(init, result)
+	}
+
+	r := 0
+	for i := 0; i < len(result); i++ {
+		r = r*10 + int(result[i])
+	}
+	if sum != r {
+		t.Errorf("Result: %d, Expected: %d", r, sum)
+	}
+}
+*/
+
 func TestMultipleWithResultSmall(t *testing.T) {
 	a := []int{2, 3, 4, 5, 6}
 	b := []int{4, 5, 3, 1}
@@ -188,5 +223,38 @@ func TestQuickDivision(t *testing.T) {
 		t.Errorf("Result: %d, Expected: %d", q, eq)
 		t.Errorf("Result: %d, Expected: %d", r, er)
 	}
+}
 
+func TestMinusV1(t *testing.T) {
+
+	//	a := []int{4, 2, 8, 9}
+	//	b := []int{3, 2, 7}
+	//	expected := 3962
+	//
+	//	r := make([]int, max(len(a), len(b))+2)
+	//	PostiveMinus(a, b, r)
+	//	fmt.Println(r, expected)
+
+	sum := 5000
+	init := []int{1}
+	a := []int{5, 0, 0, 0}
+	r := make([]int, 20)
+	for i := 0; i <= 4000; i++ {
+		sum -= 1
+		fmt.Println(a, init, r)
+		PostiveSub(a, init, r)
+		init = make([]int, len(r))
+		copy(init, r)
+	}
+
+	re := 0
+	for i := 0; i < len(r); i++ {
+		re = re*10 + int(r[i])
+	}
+
+	fmt.Println(re, sum)
+
+	if sum != re {
+		t.Errorf("Result: %d, Expected: %d", re, sum)
+	}
 }
