@@ -34,17 +34,18 @@ func TailFib(n int64, a int64, b int64) int64 {
 func TailFibArray(n []int, a []int, b []int) []int {
 
 	i := len(n) - NumbericLength(n)
-	if n[i] <= 2 {
+	idx := ArrayToNum(n[i:])
+	if idx <= 2 {
 		return []int{1}
 	}
 
-	r1 := make([]int, len(n)+1)
-	Plus(n, []int{-1}, r1)
+	r1 := make([]int, len(n))
+	PostiveSub(n, []int{1}, r1)
 
 	r2 := make([]int, len(n)+1)
 	Plus(a, b, r2)
 
-	return TailFibArray(r1, a, r2)
+	return TailFibArray(r1, b, r2)
 }
 
 func GoldenFib(n int64) float64 {
@@ -88,7 +89,7 @@ func NumToArray(num int) []int {
 	return ar
 }
 
-func GoldenFibBigInt(n *big.Int) *big.Int {
+func FibBigInt(n *big.Int) *big.Int {
 
 	a := big.NewInt(1)
 	b := big.NewInt(1)

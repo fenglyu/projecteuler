@@ -239,12 +239,15 @@ func TestMinusV1(t *testing.T) {
 	init := []int{1}
 	a := []int{5, 0, 0, 0}
 	r := make([]int, 20)
-	for i := 0; i <= 4000; i++ {
+	for i := 0; i <= 3; i++ {
 		sum -= 1
-		fmt.Println(a, init, r)
+		//fmt.Println(a, init, r)
 		PostiveSub(a, init, r)
-		init = make([]int, len(r))
-		copy(init, r)
+		//		fmt.Println(a, init, r)
+		na := make([]int, len(a))
+		copy(na, r[(len(r)-len(a)):])
+		a = na
+		fmt.Println(a, init, r)
 	}
 
 	re := 0
@@ -252,7 +255,7 @@ func TestMinusV1(t *testing.T) {
 		re = re*10 + int(r[i])
 	}
 
-	fmt.Println(re, sum)
+	//	fmt.Println(re, sum)
 
 	if sum != re {
 		t.Errorf("Result: %d, Expected: %d", re, sum)

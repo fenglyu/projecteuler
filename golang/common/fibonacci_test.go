@@ -90,17 +90,18 @@ func BenchGoldenFib(b *testing.B) {
 	}
 }
 
-func TestGoldenFibBigInt(t *testing.T) {
+func TestFibBigInt(t *testing.T) {
 	var i int64
-	for i = 1; i <= 101; i++ {
+	for i = 1; i <= 4; i++ {
 		bi := big.NewInt(i)
-		gold := GoldenFibBigInt(bi)
+		gold := FibBigInt(bi)
 
 		fib := TailFibArray(NumToArray(int(i)), []int{0}, []int{1})
 		fi := len(fib) - NumbericLength(fib)
 		f := big.NewInt(ArrayToNum(fib[fi:]))
 
-		//fmt.Println(gold)
+		fmt.Println(bi, fib, fi, f)
+		//		fmt.Println(gold)
 		if gold.Cmp(f) != 0 {
 			t.Errorf("The %d number is Result: %d, Expected: %s", i, f, gold)
 		}
