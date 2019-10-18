@@ -204,6 +204,8 @@ func QuickDivision(a int, b int) (int, int) {
 	return q, r
 }
 
+// https://blog.csdn.net/gd007he/article/details/69055031
+// https://blog.csdn.net/gd007he/article/details/68961974
 func PostiveSub(a []int, b []int, r []int) {
 	// assuem a > b
 
