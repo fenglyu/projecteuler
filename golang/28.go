@@ -57,55 +57,41 @@ func main() {
 		y++
 		i++
 		Demo[x][y] = i
-		//		fmt.Println("1. 1 --> 2 ", x, y)
 
 		// 2. up -> down
 		for t := 0; t < 2*w-1; t++ {
 			x++
 			i++
-			//			fmt.Println("2. up -> down ", x, y, i)
 			Demo[x][y] = i
-
 		}
 		sum += i
-		//		fmt.Println(i)
 
 		// 3. right -> left
 		for t := 0; t < w*2; t++ {
 			y--
 			i++
-			//			fmt.Println("3. right -> left ", x, y, i)
 			Demo[x][y] = i
-
 		}
 		sum += i
-		//		fmt.Println(i)
 
 		// 4. down -> up
 		for t := 0; t < w*2; t++ {
 			x--
 			i++
-			//			fmt.Println("4. down -> up ", x, y, i)
 			Demo[x][y] = i
-
 		}
 
 		sum += i
-		//fmt.Println(i)
 		// 5. left -> right
 		for t := 0; t < w*2; t++ {
 			y++
 			i++
-			//			fmt.Println("5. left -> right ", x, y, i)
 			Demo[x][y] = i
-
 		}
-		sum += i
-		//fmt.Println(i)
 
+		sum += i
 		w++
 	}
 
-	//	fmt.Println(Demo)
 	fmt.Println(sum)
 }
