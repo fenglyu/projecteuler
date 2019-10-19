@@ -60,27 +60,12 @@ func TestGoldenFib(t *testing.T) {
 }
 
 func TestTailFibArray(t *testing.T) {
-	nums, expected := []int{0, 1, 0}, []int{0, 5, 5}
-	fib := TailFibArray(nums, []int{0}, []int{1})
+	expected := []int{1, 2, 5, 8, 6, 2, 6, 9, 0, 2, 5}
+	i := 50
+	fib := TailFibArray(NumToArray(int(i)), []int{0}, []int{1})
 	al, bl := len(fib)-NumbericLength(fib), len(expected)-NumbericLength(expected)
 	if !reflect.DeepEqual(fib[al:], expected[bl:]) {
-		t.Errorf("Result: %d, Expected: %d", fib, expected)
-	}
-}
-
-func TestGoldenFibV2(t *testing.T) {
-	var gold float64
-
-	for i := 1; i <= 101; i++ {
-		gold = GoldenFib(int64(i))
-		fib := TailFibArray(NumToArray(i), []int{0}, []int{1})
-		fi := len(fib) - NumbericLength(fib)
-		f := ArrayToNum(fib[fi:])
-		//		fmt.Println(f, fib[fi:])
-
-		if !floatcompare(float64(f), gold) {
-			t.Errorf("Result: %d, Expected: %f", f, gold)
-		}
+		t.Errorf("Result: %d, Expected: %d", fib[al:], expected[bl:])
 	}
 }
 
@@ -91,25 +76,23 @@ func BenchGoldenFib(b *testing.B) {
 }
 
 func TestFibBigInt(t *testing.T) {
-	var i int64
-	for i = 1; i <= 4; i++ {
-		bi := big.NewInt(i)
-		gold := FibBigInt(bi)
+	var i int64 = 10
+	//	for i = 1; i <= 5; i++ {
+	bi := big.NewInt(i)
+	gold := FibBigInt(bi)
 
-		fib := TailFibArray(NumToArray(int(i)), []int{0}, []int{1})
-		fi := len(fib) - NumbericLength(fib)
-		f := big.NewInt(ArrayToNum(fib[fi:]))
+	fib := TailFibArray(NumToArray(int(i)), []int{0}, []int{1})
+	fi := len(fib) - NumbericLength(fib)
+	f := big.NewInt(ArrayToNum(fib[fi:]))
 
-		fmt.Println(bi, fib, fi, f)
-		//		fmt.Println(gold)
-		if gold.Cmp(f) != 0 {
-			t.Errorf("The %d number is Result: %d, Expected: %s", i, f, gold)
-		}
+	//fmt.Println(f, gold)
+	if gold.Cmp(f) != 0 {
+		t.Errorf("The %d number is Result: %d, Expected: %s", i, f, gold)
 	}
+	//	}
 }
 
 func TestGoldenFibBig(t *testing.T) {
-
 	var i int64 = 10
 	bi := big.NewInt(i)
 	gold := GoldenFibBig(bi)

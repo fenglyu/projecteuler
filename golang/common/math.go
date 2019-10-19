@@ -208,7 +208,6 @@ func QuickDivision(a int, b int) (int, int) {
 // https://blog.csdn.net/gd007he/article/details/68961974
 func PostiveSub(a []int, b []int, r []int) {
 	// assuem a > b
-
 	for i := 0; i < len(r); i++ {
 		r[i] = 0
 	}
@@ -234,10 +233,13 @@ func PostiveSub(a []int, b []int, r []int) {
 			} else {
 				r[j] = a[pa] + 10 - b[pb]
 				for k := pa - 1; k >= 0; k-- {
-					if a[k] > 0 {
-						r[j-(pa-k)] = a[k] - 1
-					} else {
+					if a[k] == 0 {
+						a[k] = 9
 						r[j-(pa-k)] = 9
+					} else {
+						tmp := a[k] - 1
+						r[j-(pa-k)] = tmp
+						a[k] = tmp
 						break
 					}
 				}

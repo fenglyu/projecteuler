@@ -1,7 +1,7 @@
 package common
 
 import (
-	"fmt"
+	//	"fmt"
 	"reflect"
 	"testing"
 )
@@ -227,19 +227,11 @@ func TestQuickDivision(t *testing.T) {
 
 func TestMinusV1(t *testing.T) {
 
-	//	a := []int{4, 2, 8, 9}
-	//	b := []int{3, 2, 7}
-	//	expected := 3962
-	//
-	//	r := make([]int, max(len(a), len(b))+2)
-	//	PostiveMinus(a, b, r)
-	//	fmt.Println(r, expected)
-
 	sum := 5000
 	init := []int{1}
 	a := []int{5, 0, 0, 0}
 	r := make([]int, 20)
-	for i := 0; i <= 3; i++ {
+	for i := 0; i <= 4000; i++ {
 		sum -= 1
 		//fmt.Println(a, init, r)
 		PostiveSub(a, init, r)
@@ -247,7 +239,7 @@ func TestMinusV1(t *testing.T) {
 		na := make([]int, len(a))
 		copy(na, r[(len(r)-len(a)):])
 		a = na
-		fmt.Println(a, init, r)
+		//		fmt.Println(a, init, r)
 	}
 
 	re := 0

@@ -1,7 +1,7 @@
 package common
 
 import (
-	"fmt"
+	//	"fmt"
 	"math"
 	"math/big"
 	//	"reflect"
@@ -31,21 +31,23 @@ func TailFib(n int64, a int64, b int64) int64 {
 	return TailFib(n-1, b, a+b)
 }
 
-func TailFibArray(n []int, a []int, b []int) []int {
-
+func TailFibArray(n []int, a []int, b []int) (r []int) {
+	//	fmt.Println(n, a, b)
 	i := len(n) - NumbericLength(n)
 	idx := ArrayToNum(n[i:])
-	if idx <= 2 {
-		return []int{1}
+	if idx == 0 {
+		return a
+	}
+	if idx == 1 {
+		return b
 	}
 
 	r1 := make([]int, len(n))
 	PostiveSub(n, []int{1}, r1)
-
-	r2 := make([]int, len(n)+1)
-	Plus(a, b, r2)
-
-	return TailFibArray(r1, b, r2)
+	r = make([]int, len(n)+1)
+	Plus(a, b, r)
+	//	fmt.Println(n, a, b, r)
+	return TailFibArray(r1, b, r)
 }
 
 func GoldenFib(n int64) float64 {
@@ -76,7 +78,7 @@ func ArrayToNum(nums []int) int64 {
 
 func NumToArray(num int) []int {
 
-	f, ar := num, []int{0, 0, 0, 0, 0}
+	f, ar := num, []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	c := len(ar) - 1
 	for {
 		if f == 0 {
@@ -132,10 +134,10 @@ func GoldenFibBig(n *big.Int) *big.Float {
 			break
 		}
 		c.Mul(c, goldenRate)
-		fmt.Println(c)
+		//fmt.Println(c)
 		f := new(big.Float).SetPrec(2).SetMode(big.ToNearestAway).Set(c)
 		//		fmt.Println(f)
-		fmt.Println(f)
+		//	fmt.Println(f)
 		c = f
 
 		t.Add(t, big.NewInt(1))
