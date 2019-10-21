@@ -14,7 +14,7 @@ func CircurLength(n int) int {
 	hash := make(map[int]int)
 
 	for {
-		if c >= 100 || hash[a] > 0 {
+		if hash[a] > 0 {
 			break
 		}
 
@@ -25,8 +25,6 @@ func CircurLength(n int) int {
 		c++
 	}
 	/*
-		fmt.Println(t, c)
-		fmt.Println(hash)
 		fmt.Println(t - hash[a])
 	*/
 
