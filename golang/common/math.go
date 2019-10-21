@@ -252,3 +252,9 @@ func PostiveSub(a []int, b []int, r []int) {
 		j--
 	}
 }
+
+// http://fredrikj.net/blog/2011/03/100-mpmath-one-liners-for-pi/
+// Calculate PI
+
+// decimal implements arbitrary precision, decimal floating-point numbers, per the General Decimal Arithmetic specification.
+// go get github.com/ericlagergren/decimal

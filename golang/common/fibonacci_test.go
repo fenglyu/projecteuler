@@ -89,7 +89,6 @@ func TestFibBigInt(t *testing.T) {
 	if gold.Cmp(f) != 0 {
 		t.Errorf("The %d number is Result: %d, Expected: %s", i, f, gold)
 	}
-	//	}
 }
 
 func TestGoldenFibBig(t *testing.T) {
