@@ -24,7 +24,7 @@ func main() {
 	i := 2
 	c := 0
 
-	ar := make([]int, 20)
+	ar := make([]int, 30)
 	for {
 		if i*i > 100 {
 			break
@@ -33,6 +33,7 @@ func main() {
 		c++
 		ar[c] = i * i
 		c++
+		i++
 	}
 
 	fmt.Println(ar)

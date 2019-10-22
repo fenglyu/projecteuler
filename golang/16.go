@@ -64,34 +64,8 @@ func main() {
 
 	for i := 0; i < 20; i++ {
 		res = mul(res, c)
-		//		if (len(c) + len(res) + 1) > cap(res) {
-		//			t := make([]int, len(res), (cap(res)+1)*2)
-		//			copy(t, res)
-		//			res = t
-		//		}
 	}
 
-	//	res = mul(d, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	//	res = mul(res, c)
-	// get it
-	//fmt.Println(res)
 	sum = 0
 	for i := len(res) - 1; i >= 0; i-- {
 		sum += res[i]
