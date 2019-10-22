@@ -253,3 +253,7 @@ func TestMinusV1(t *testing.T) {
 		t.Errorf("Result: %d, Expected: %d", re, sum)
 	}
 }
+
+func TestQuo(t *testing.T) {
+
+}

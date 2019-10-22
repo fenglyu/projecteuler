@@ -258,3 +258,7 @@ func PostiveSub(a []int, b []int, r []int) {
 
 // decimal implements arbitrary precision, decimal floating-point numbers, per the General Decimal Arithmetic specification.
 // go get github.com/ericlagergren/decimal
+
+func Quo(a []int, b []int, r []int) {
+
+}
