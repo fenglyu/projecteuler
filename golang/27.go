@@ -5,44 +5,46 @@ import (
 	"math/big"
 )
 
-type Float struct {
-	integer int64
-	point   int64
-}
-
-func div(a int, b int) {
-	fmt.Println(a, b)
-}
-
-type pair struct {
-	a int
-	b int
-}
-
 func main() {
 
 	//	maps := make(map[pair]int)
+	/*
+		primes := make([]int64, 560)
+		var i int64
+		count := 0
+		for i = 0; i < 4001; i++ {
+			p := big.NewInt(i)
+			if p.ProbablyPrime(20) {
+				//fmt.Println(p)
+				primes[count] = i
+				count++
+			}
+		}
+		//fmt.Println(count)
+		fmt.Println(primes)
+	*/
+	var amax, bmax, imax int64 = 0, 0, 0
 	var a, b int64
 	for a = -1000; a < 1001; a++ {
 		for b = -1000; b < 1001; b++ {
 			var i int64 = 0
-			n := big.NewInt(i)
-			c := big.NewInt(1).Mul(n, n)
-			g := big.NewInt(a)
-			e := big.NewInt(b)
-			d := big.NewInt(1).Mul(g, n)
-			f := big.NewInt(0).Add(c, d)
-			f.Add(f, e)
+
 			for {
-				//fmt.Println(a, b)
-				if i > 1000 {
+				n := i*i + a*i + b
+				p := big.NewInt(n)
+				if p.ProbablyPrime(3) {
+					if i > imax {
+						amax = a
+						bmax = b
+						imax = i
+					}
+					i++
+				} else {
 					break
 				}
-				if f.ProbablyPrime(20) {
-					fmt.Println(a, b, i, f)
-				}
 			}
-
 		}
 	}
+	fmt.Println(amax, bmax, imax)
+	fmt.Println(amax * bmax)
 }
