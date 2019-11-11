@@ -9,7 +9,6 @@ import (
 func CircurLength(n int) int {
 	a := 1
 	b := n
-	c := 0
 	t := 0
 	hash := make(map[int]int)
 
@@ -22,7 +21,6 @@ func CircurLength(n int) int {
 		//		fmt.Println(a, "/", b, "=") //, n)
 		a = a % b * 10
 		t++
-		c++
 	}
 	/*
 		fmt.Println(t - hash[a])
