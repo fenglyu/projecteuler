@@ -12,3 +12,12 @@ go test -timeout 30s github.com/fenglyu/projecteuler/golang/common  -run ^\(Test
 ```
 go tool pprof 27.prof
 ```
+
+## Go Module proxy
+```
+1.使用go1.11以上版本并开启go module机制
+
+2.导出GOPROXY环境变量
+
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+```

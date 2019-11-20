@@ -17,16 +17,35 @@ It can be verified that the sum of the numbers on the diagonals is 101.
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 */
 
+/*
+Of course the whole problem can be solved without the aid of a computer, but I went somewhere in-between...
+
+First I noted that for an n by n grid, and n being odd, the number in the top right corner is n2. A little mathematical analysis told me that the other corners are given by: n2-n+1, n2-2n+2, and n2-3n+3. Adding these together gives the quadratic, 4n2-6n+6. Then all I had to do was create a loop from 3 to 1001 in steps of 2 and find the running total (starting from 1) of the quadratic.
+
+Whether or not it can be done in two lines of code depends on the language. In BASIC (which is my language of choice) you would need four lines:
+t=1
+for n=3 to 1001 Step 2
+  t=t+4*n^2-6*n+6
+next n
+But other languages could support something like:
+int t=1;
+for (int n=3;n<=1001;n+=2) t+=4*pow(n,2)-6*n+6;
+
+
+# This perl implementation is awesome
+$t = 1;
+for ($n = 3; $n <= 1001; $n += 2) {
+  $t += 4 * $n ** 2 - 6 * $n + 6;
+}
+
+printf($t)
+*/
+
 var LEN int = 1001
 var Demo [1001][1001]int
 
 //var LEN int = 5
 //var Demo [5][5]int
-
-func square() int {
-
-	return 1
-}
 
 func main() {
 
