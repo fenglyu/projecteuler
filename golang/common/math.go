@@ -262,3 +262,68 @@ func PostiveSub(a []int, b []int, r []int) {
 func Quo(a []int, b []int, r []int) {
 
 }
+
+func Prime(n int) bool {
+	i := 2
+	for {
+		if i*i > n {
+			break
+		}
+
+		if n%i == 0 {
+			return false
+		}
+
+		i++
+	}
+	return true
+}
+
+func DivisorV2(n int) int {
+
+	num, i := 0, 1
+	for {
+		if i*i > n {
+			break
+		}
+
+		if n%i == 0 {
+			num += 2
+		}
+		i += 1
+	}
+
+	if i*i == n {
+		num -= 1
+	}
+
+	return num
+}
+
+func DivisorV3(s int) []int {
+
+	n, i := s, 0
+
+	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}
+
+	res := make([]int, 0)
+
+	for {
+		if primes[i]*primes[i] > s {
+			break
+		}
+
+		for n%primes[i] == 0 {
+			res = append(res, primes[i])
+			n = n / primes[i]
+		}
+
+		i++
+	}
+
+	if n < s && n > 1 {
+		res = append(res, n)
+	}
+
+	return res
+}

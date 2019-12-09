@@ -1,7 +1,7 @@
 package common
 
 import (
-	//	"fmt"
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -255,5 +255,43 @@ func TestMinusV1(t *testing.T) {
 }
 
 func TestQuo(t *testing.T) {
+
+}
+
+func TestPrime(t *testing.T) {
+
+	primes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}
+
+	for _, v := range primes {
+		res := Prime(v)
+		if !res {
+			t.Errorf("Result: %t, Expected: %t", res, true)
+		}
+	}
+}
+
+func TestDivisorV3(t *testing.T) {
+	i, e := 40, []int{2, 2, 2, 5}
+
+	r := DivisorV3(i)
+
+	if !reflect.DeepEqual(r, e) {
+		t.Errorf("Result: %d, Expected: %d", r, e)
+	}
+}
+
+func TestMoreDivisorV3(t *testing.T) {
+
+	/*
+		r := DivisorV3(8)
+		fmt.Println("num ", r)
+
+	*/
+	/*
+	 */
+	for i := 2; i < 101; i++ {
+		r := DivisorV3(i)
+		fmt.Println("num ", i, r)
+	}
 
 }
