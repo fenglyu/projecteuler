@@ -1,5 +1,9 @@
 package common
 
+import (
+	"math"
+)
+
 // used for numberic arrays
 func NumbericLength(n []int) int {
 	i := 0
@@ -326,4 +330,10 @@ func DivisorV3(s int) []int {
 	}
 
 	return res
+}
+
+const float64EqualityThreshold = 1e-9
+
+func FloatCompare(a, b float64) bool {
+	return math.Abs(a-b) <= float64EqualityThreshold*(math.Abs(a)+math.Abs(b))
 }
