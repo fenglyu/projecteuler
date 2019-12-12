@@ -21,7 +21,7 @@ func equalInt(base int, powers []int) int {
 			break
 		}
 
-		fmt.Println(sumF, baseF, base, powers)
+		fmt.Println(sumF, baseF, "->", base, powers)
 		baseF = sumF
 		num++
 	}
