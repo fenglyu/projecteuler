@@ -4,9 +4,20 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strings"
 
 	"github.com/fenglyu/projecteuler/golang/common"
 )
+
+func printExponent(powers []int) string {
+	var b strings.Builder
+	var c = 1
+	for _, v := range powers {
+		c *= v
+	}
+	fmt.Fprintf(&b, "%d", c)
+	return b.String()
+}
 
 func equalInt(base int, powers []int) int {
 
@@ -15,13 +26,13 @@ func equalInt(base int, powers []int) int {
 	sumF = 1
 	baseF = float64(base)
 
-	for _, v := range powers {
+	for i, v := range powers {
 		sumF = math.Pow(baseF, float64(v))
 		if common.FloatCompare(sumF, 100.0) {
 			break
 		}
 
-		fmt.Println(sumF, baseF, "->", base, powers)
+		fmt.Println(sumF, "**", printExponent(powers[i+1:]), "->", base, powers)
 		baseF = sumF
 		num++
 	}

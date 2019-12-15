@@ -2,7 +2,6 @@ package common
 
 import (
 	"fmt"
-	"math"
 	"math/big"
 	"reflect"
 	"testing"
@@ -16,7 +15,7 @@ func TestFib(t *testing.T) {
 	for i = 1; i <= 20; i++ {
 		gold = GoldenFib(int64(i))
 		fib = Fib(i)
-		if !floatcompare(float64(fib), gold) {
+		if !FloatEqualTo(float64(fib), gold) {
 			t.Errorf("Result: %d, Expected: %f", fib, gold)
 		}
 	}
@@ -32,18 +31,20 @@ func TestTailFib(t *testing.T) {
 		fib = TailFib(i, 0, 1)
 		gold = GoldenFib(i)
 		// fmt.Printf("[TestTailFib] Result: %d, Expected: %f\n", fib, gold)
-		if !floatcompare(float64(fib), gold) {
+		if !FloatEqualTo(float64(fib), gold) {
 			t.Errorf("The %d number is Result: %d, Expected: %f", i, fib, gold)
 		}
 	}
 }
 
 //const EPSILON = 1e-9
+/*
 const float64EqualityThreshold = 1e-9
 
-func floatcompare(a, b float64) bool {
+func FloatEqualTo(a, b float64) bool {
 	return math.Abs(a-b) <= float64EqualityThreshold*(math.Abs(a)+math.Abs(b))
 }
+*/
 
 func TestGoldenFib(t *testing.T) {
 
@@ -54,7 +55,7 @@ func TestGoldenFib(t *testing.T) {
 
 	fib := GoldenFib(num)
 
-	if !floatcompare(float64(fib), float64(expected)) {
+	if !FloatEqualTo(float64(fib), float64(expected)) {
 		t.Errorf("Result: %f, Expected: %f", fib, expected)
 	}
 }

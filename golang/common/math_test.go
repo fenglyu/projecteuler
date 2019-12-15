@@ -295,3 +295,39 @@ func TestMoreDivisorV3(t *testing.T) {
 	}
 
 }
+
+func TestFloatEqualTo(t *testing.T) {
+	cases := []struct {
+		Name     string
+		A, B     float64
+		Expected int
+	}{
+		{
+			"greater than",
+			256,
+			100,
+			1,
+		},
+		{
+			"less than",
+			127,
+			486,
+			-1,
+		},
+		{
+			"equal to",
+			124.534,
+			124.534,
+			0,
+		},
+	}
+
+	for i, tc := range cases {
+		t.Run(fmt.Sprintf("%d-%s", i, tc.Name), func(t *testing.T) {
+			result := FloatCompare(tc.A, tc.B)
+			if result != tc.Expected {
+				t.Fatalf("bad: %#v", result)
+			}
+		})
+	}
+}

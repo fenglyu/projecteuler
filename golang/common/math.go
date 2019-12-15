@@ -334,6 +334,18 @@ func DivisorV3(s int) []int {
 
 const float64EqualityThreshold = 1e-9
 
-func FloatCompare(a, b float64) bool {
+func FloatEqualTo(a, b float64) bool {
 	return math.Abs(a-b) <= float64EqualityThreshold*(math.Abs(a)+math.Abs(b))
+}
+
+func FloatCompare(a, b float64) int {
+	if FloatEqualTo(a, b) {
+		return 0
+	}
+
+	if a > b {
+		return 1
+	} else {
+		return -1
+	}
 }
