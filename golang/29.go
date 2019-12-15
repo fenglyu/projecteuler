@@ -28,7 +28,7 @@ func equalInt(base int, powers []int) int {
 
 	for i, v := range powers {
 		sumF = math.Pow(baseF, float64(v))
-		if common.FloatCompare(sumF, 100.0) {
+		if common.FloatCompare(sumF, 100.0) > 0 {
 			break
 		}
 
@@ -60,15 +60,16 @@ func main() {
 	sort.Ints(keys)
 	//	fmt.Println("map: ", m)
 	sum := 0
-	//	for j := 2; j <= 10; j++ {
-	j := 2
-	for v := range keys {
-		//fmt.Println(k, v)
-		t := equalInt(j, m[v])
-		sum += t
+	for j := 2; j <= 100; j++ {
+		//j := 2
+		for v := range keys {
+			//fmt.Println(k, v)
+			t := equalInt(j, m[v])
+			sum += t
+		}
 	}
-	//}
 
+	fmt.Println("found: ", sum)
 	fmt.Println("sum: ", 99*99-sum)
 }
 
