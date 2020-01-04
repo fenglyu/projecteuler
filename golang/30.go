@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// the top boundry is 9**5 * 6 = 354294
 var MAX_N = 354294
 
 func isNumber(n int) bool {
