@@ -280,18 +280,30 @@ func TestDivisorV3(t *testing.T) {
 	}
 }
 
+func intArrayMul(a []int) int {
+	if len(a) < 1 {
+		return 0
+	}
+	res := 1
+	for _, v := range a {
+		res *= v
+	}
+	return res
+}
+
 func TestMoreDivisorV3(t *testing.T) {
 
-	/*
-		r := DivisorV3(8)
-		fmt.Println("num ", r)
-
-	*/
-	/*
-	 */
 	for i := 2; i < 101; i++ {
 		r := DivisorV3(i)
-		fmt.Println("num ", i, r)
+		//	fmt.Println("num ", i, r)
+		mul := intArrayMul(r)
+		if mul == 0 {
+			continue
+		}
+
+		if mul != i {
+			t.Fatalf("bad: %#v", r)
+		}
 	}
 
 }
