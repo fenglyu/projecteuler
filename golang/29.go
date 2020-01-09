@@ -125,7 +125,6 @@ python one-liner
 9183
 
 ```
-
 go run  29.go |grep '2 \[' |sort -k8,8n
 
 /*
