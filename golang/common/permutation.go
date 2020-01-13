@@ -84,6 +84,7 @@ func ReverseV2(c []int, l int, r int) {
 
 // https://github.com/cweill/Permute-Golang/blob/master/permute.go
 // http://wordaligned.org/articles/next-permutation
+// Ddsger W. Dijkstra A DISCIPLINE OF PROGRAMMING, Chapter 13
 func NextPermutationV3(c []int, first int, last int) bool {
 
 	if first == last {
