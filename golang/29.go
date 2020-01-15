@@ -2,22 +2,25 @@ package main
 
 import (
 	"fmt"
-	"github.com/fenglyu/projecteuler/golang/common"
 	"math"
 	"sort"
 	"strings"
+
+	"github.com/fenglyu/projecteuler/golang/common"
 )
 
 //var DEDUP map[float64]
 
-func printExponent(powers []int) string {
+var g map[string]bool
+
+func printExponent(powers []int) (int, string) {
 	var b strings.Builder
 	var c = 1
 	for _, v := range powers {
 		c *= v
 	}
 	fmt.Fprintf(&b, "%d", c)
-	return b.String()
+	return c, b.String()
 }
 
 func equalInt(base int, powers []int, power int) int {
@@ -56,8 +59,13 @@ func equalInt(base int, powers []int, power int) int {
 				dedup[sumF] = true
 			}
 
-			fmt.Println(power, sumF, "**", printExponent(powers[i+1:]), "==", base, "**", power, "->", base, powers)
+			exp, _ := printExponent(powers[i+1:])
+			//		fmt.Println(power, sumF, "**", printExponent(powers[i+1:]), "==", base, "**", power, "->", base, powers)
 			baseF = sumF
+
+			key_str := fmt.Sprintf("%d%d", int(baseF), exp)
+			fmt.Printf("IN -> [%d-%d]\n", int(baseF), exp)
+			g[key_str] = true
 
 			num++
 		}
@@ -70,6 +78,10 @@ func equalInt(base int, powers []int, power int) int {
 }
 
 func main() {
+
+	// store duplicated key/value pairs like
+	// (2, 64) == (4, 32) => "432":true
+	g = make(map[string]bool)
 
 	m := make(map[int][]int)
 	for i := 2; i < 101; i++ {
@@ -96,6 +108,11 @@ func main() {
 		for _, v := range keys {
 			//v := 12
 			//fmt.Println(v)
+			key_str := fmt.Sprintf("%d%d", j, v)
+			if _, ok := g[key_str]; ok {
+				fmt.Printf("[%d-%d]\n", j, v)
+				continue
+			}
 			t := equalInt(j, m[v], v)
 			sum += t
 		}
