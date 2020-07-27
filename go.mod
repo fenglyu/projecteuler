@@ -15,6 +15,7 @@ require (
 	github.com/google/pprof v0.0.0-20191016141926-35da2c455f8f // indirect
 	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf // indirect
 	github.com/gostaticanalysis/analysisutil v0.0.3 // indirect
+	github.com/hashicorp/tf-sdk-migrator v1.2.0 // indirect
 	github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6 // indirect
 	github.com/josharian/impl v0.0.0-20191119165012-6b9658ad00c7 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
