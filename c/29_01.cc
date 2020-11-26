@@ -27,15 +27,15 @@ void mark_duplicates(int a1, int b1)
     for(int b2=2; b2<=MAX; b2++) {
         int b3 = b1 * b2;
         for(int f1=1; f1<b1; f1++) {
-              if(b3 % f1 == 0) {
-                  int f2 = b3 / f1;
-                int a2 = power(a1, f1);
-                if(a2 <= MAX) {
-                      if(f2 <= MAX) {
-                          duplicate[a2-1][f2-1] = true;
-                    }
-                }
+            if(b3 % f1 == 0) {
+                int f2 = b3 / f1;
+              int a2 = power(a1, f1);
+              if(a2 <= MAX) {
+                    if(f2 <= MAX) {
+                        duplicate[a2-1][f2-1] = true;
+                  }
               }
+            }
         }
     }
 }
